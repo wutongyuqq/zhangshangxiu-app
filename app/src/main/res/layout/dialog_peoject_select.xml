@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        >
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:text="增加临时项目" />
+    <LinearLayout
+        android:id="@+id/content_line_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+        <TextView
+            android:id="@+id/content_line_one"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:text="项目名称"/>
+        <EditText
+            android:id="@+id/content_line_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2"
+            android:background="#D8D8D8"
+            android:textSize="17sp"
+            android:padding="5dp"
+            android:hint="项目名称"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:text="维修成本"/>
+            <EditText
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:background="#D8D8D8"
+                android:textSize="17sp"
+                android:padding="5dp"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:text="项目价格"/>
+            <EditText
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:background="#D8D8D8"
+                android:textSize="17sp"
+                android:padding="5dp"
+               />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:text="项目类别"/>
+            <EditText
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:background="#D8D8D8"
+                android:textSize="17sp"
+                android:padding="5dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/content_bottom_lay"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#88cccccc"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btn_left_lay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+            <TextView
+                android:id="@+id/btn_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="#89c997"
+                android:textColor="#ffffff"
+                android:text="取消"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_right_lay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/btn_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="#89c997"
+                    android:textColor="#ffffff"
+                    android:text="确定"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

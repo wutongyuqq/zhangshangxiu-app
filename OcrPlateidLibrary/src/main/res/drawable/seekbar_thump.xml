@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <!--<bitmap android:src="@drawable/seekbar_bg_pic" android:height="10dp" android:width="10dp"></bitmap>-->
+        <shape>
+            <solid android:color="#00000000" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/seekbar_thump_pic" android:height="30dp" android:width="30dp"/>
+</layer-list>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
+    >
+    <TextView
+        android:id="@+id/car_cur_order"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.3"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:text="A1907678777"/>
+
+    <TextView
+        android:id="@+id/cur_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:text="2019-09-10"/>
+
+    <TextView
+        android:id="@+id/cur_cp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:text="湘A18797"/>
+
+    <TextView
+        android:id="@+id/car_gz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:text="机修"/>
+
+    <TextView
+        android:id="@+id/car_money"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:text="￥ 50.00"/>
+
+</LinearLayout>

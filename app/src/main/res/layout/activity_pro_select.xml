@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+   >
+    <include layout="@layout/nav_support"/>
+    <include layout="@layout/info_support"/>
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ff9db4"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:text="快捷业务"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="#a4a3a3"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:background="#eeeeee"
+            android:text="常规项目"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="#a4a3a3"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:background="#eeeeee"
+            android:text="保养套餐"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:background="@drawable/red_bottom_beijing" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/red_white_search" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8FBF8"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:scrollbars="none">
+
+    <GridLayout
+        android:id="@+id/gridlayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:columnCount="3"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:rowCount="6"/>
+    </ScrollView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/back_jieche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#89c997"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="20dp"
+            android:text="返回至接车"/>
+
+        <ImageView
+            android:id="@+id/shop_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/back_jieche"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/car_food"/>
+
+        <TextView
+            android:id="@+id/confirm_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#89c997"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@+id/shop_car"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:text="确认至工单"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

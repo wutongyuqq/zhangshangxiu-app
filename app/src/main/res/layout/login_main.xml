@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="center"
+    android:background="@drawable/zsx_back_login"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginTop="80dp"
+        android:background="#55ffffff"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/factory_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#ffffff"
+            android:padding="5dp"
+            android:textColorHint="#999999"
+            android:background="#88ffffff"
+            android:textSize="19sp"
+            android:hint="修理厂名称/分店名称"/>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:textSize="19sp"
+            android:background="#88ffffff"
+            android:hint="请输入用户名"/>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:inputType="textPassword"
+            android:background="#88ffffff"
+            android:textColor="#ffffff"
+            android:textSize="19sp"
+            android:hint="请输入密码"/>
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="10dp"
+            android:background="#32b16c"
+            android:text="登录"
+
+            />
+    </LinearLayout>
+
+</LinearLayout>

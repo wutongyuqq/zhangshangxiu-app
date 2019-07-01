@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#76bfe5"
+        />
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:layout_height="55dp"
+      >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FCFCFC"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/rl_bttom_01"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:scaleType="center"
+                    android:src="@drawable/recever_hand_blue" />
+
+                <TextView
+                    android:id="@+id/tv_one_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_one"
+                    android:gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:text="车辆接待"
+                    android:textColor="#60b9e7" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_bottom_02"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:scaleType="center"
+                    android:src="@drawable/factory_gray" />
+
+                <TextView
+                    android:id="@+id/tv_two_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_two"
+                    android:gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:text="车间管理"
+                    android:textColor="#898989" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_bottom_03"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:scaleType="center"
+                    android:src="@drawable/condition_gray" />
+
+                <TextView
+                    android:id="@+id/tv_three_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_three"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:text="整厂概况"
+                    android:textColor="#898989" />
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_bottom_04"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:scaleType="center"
+                    android:src="@drawable/msg_gray" />
+
+                <TextView
+                    android:id="@+id/tv_four_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_four"
+                    android:gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:text="信息中心"
+                    android:textColor="#898989" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_bottom_05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_five"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:scaleType="center"
+                    android:src="@drawable/setting_gray" />
+
+                <TextView
+                    android:id="@+id/tv_five_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_five"
+                    android:gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:text="设置"
+                    android:textColor="#898989" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

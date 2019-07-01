@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">掌上修</string>
+    <string name="internet_ip_debug">http://121.43.148.193:5555</string>
+    <string name="ip_address_debug">http://121.43.148.193:5555</string>
+    <string name="internet_ip">http://121.43.148.193:5555</string>
+    <string name="ip_address">http://121.43.148.193:5555</string>
+    <string name="company_name">福州市首佳软件有限公司</string>
+
+
+</resources>

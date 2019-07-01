@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/tv_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="取消"
+            android:textColor="#60b9e7"
+            android:textSize="17sp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#232326"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/tv_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="确认"
+            android:textColor="#60b9e7"
+            android:textSize="17sp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginRight="20px"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#f1f3f6" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eeeeee"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp">
+
+            <com.shoujia.zhangshangxiu.view.DatePickerView
+                android:id="@+id/year_pv"
+                android:layout_width="0px"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                />
+
+            <com.shoujia.zhangshangxiu.view.DatePickerView
+                android:id="@+id/month_pv"
+                android:layout_width="0px"
+                android:layout_height="150dp"
+                android:layout_weight="1" />
+
+            <com.shoujia.zhangshangxiu.view.DatePickerView
+                android:id="@+id/day_pv"
+                android:layout_width="0px"
+                android:layout_height="150dp"
+                android:layout_weight="1" />
+
+
+            <com.shoujia.zhangshangxiu.view.DatePickerView
+                android:id="@+id/hour_pv"
+                android:layout_width="0px"
+                android:layout_height="150dp"
+                android:layout_weight="1" />
+
+            <com.shoujia.zhangshangxiu.view.DatePickerView
+                android:id="@+id/minute_pv"
+                android:layout_width="0px"
+                android:layout_height="150dp"
+                android:layout_weight="1" />
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

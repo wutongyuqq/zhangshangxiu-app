@@ -1,0 +1,5 @@
+<resources>
+    <string name="license_verification_failed">授权验证失败</string>
+    <string name="license_verification_success">授权验证成功</string>
+    <string name="failed_check_failure"> 激活文件校验失败</string>
+</resources>

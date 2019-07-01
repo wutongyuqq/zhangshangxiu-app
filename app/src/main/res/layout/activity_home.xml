@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:id="@+id/ll_top_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF6F9F"
+        android:orientation="horizontal">
+       <include layout="@layout/nav_support"/>
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/tab_support"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/fragment_tab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_top_title"
+        android:orientation="vertical"
+        android:layout_above="@+id/rl_bottom">
+
+    </LinearLayout>
+
+</RelativeLayout>
