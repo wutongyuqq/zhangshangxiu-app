@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include layout="@layout/nav_support" />
+
+        <include layout="@layout/info_support" />
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"></ListView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/pj_btn_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_pg"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#89c997"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="派工"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/to_manager"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#89c997"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="车间管理"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

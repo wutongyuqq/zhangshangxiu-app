@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_item"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
@@ -12,6 +13,7 @@
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
+            android:id="@+id/tv_fold_img"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/fold_img"

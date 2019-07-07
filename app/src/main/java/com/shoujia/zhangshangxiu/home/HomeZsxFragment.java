@@ -449,7 +449,9 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
                     et_province_cp.getLocationOnScreen(location); //获取在当前窗口内的绝对坐标,当前activity显示的大小
                     int yOff = location[1] + Util.dp2px(getContext(),50);
                     mPopupWindow.dismiss();
-                    mPopupWindow.showAsDropDown(et_province_cp);
+                    if(getActivity()!=null) {
+                        mPopupWindow.showAsDropDown(et_province_cp);
+                    }
                 }
             }
         }

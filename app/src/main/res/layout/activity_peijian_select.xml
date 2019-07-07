@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include layout="@layout/nav_support" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/tv_pro"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#ff9db4"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="项目"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:id="@+id/tv_pj"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:background="#A4A3A3"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="临时配件"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/tv_zdpj"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:background="#A4A3A3"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="自带配件"
+                    android:textColor="#666666" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ff9db4" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_pj_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_layout">
+        <ListView
+            android:id="@+id/rl_pj_one_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+        </ListView>
+
+        <LinearLayout
+            android:id="@+id/pro_btn_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/make_sure_one"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#89c997"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="确定"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_pj_two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_below="@+id/top_layout">
+        <ListView
+            android:id="@+id/rl_pj_two_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/xinzen_peijian"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#89c997"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="新增配件"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#89c997"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="确定"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_pj_three"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_below="@+id/top_layout">
+        <ListView
+            android:id="@+id/rl_pj_three_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/add_three"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#89c997"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="新增配件"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#89c997"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="确定"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

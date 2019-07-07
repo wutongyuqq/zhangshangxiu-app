@@ -9,4 +9,7 @@
 
     <item name="disabled_alpha_material_light" format="float" type="dimen">0.26</item>
     <item name="disabled_alpha_material_dark" format="float" type="dimen">0.30</item>
+
+    <color name="little_gray">#cccccc</color>
+    <color name="transparent">#00000000</color>
 </resources>

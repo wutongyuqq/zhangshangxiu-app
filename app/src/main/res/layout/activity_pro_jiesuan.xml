@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:gravity="center_horizontal"
+    android:scrollbars="none">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <include layout="@layout/nav_support" />
+
+            <include layout="@layout/info_support" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="结算单号：A1906080001"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="预完工时间：2019-06-08"
+                        android:textColor="#333333" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:text="修理厂名称："
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="杜卡迪吧"
+                        android:textColor="#999999" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:text="客户名称："
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="陈明"
+                        android:textColor="#999999" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:text="车牌："
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="鄂ABC218"
+                        android:textColor="#999999" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:text="车架号："
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="111111"
+                        android:textColor="#999999" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:text="车型："
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="AVE"
+                        android:textColor="#999999" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:text="进厂里程："
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="10000"
+                        android:textColor="#999999" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:text="故障描述："
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="发动机故障"
+                        android:textColor="#999999" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#333333" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="项目名称"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="修理费"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="优惠"
+                    android:textColor="#333333" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="发动机总成大修"
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="￥1800.00"
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="0.00"
+                        android:textColor="#999999" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="#333333" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="配件名称"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="数量"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="单价"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="金额"
+                    android:textColor="#333333" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="发动机总成大修"
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="￥1800.00"
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="0.00"
+                        android:textColor="#999999" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="100"
+                        android:textColor="#999999" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="#333333" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="30dp"
+                android:textColor="#333333"
+                android:text="应收总计：￥5540"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pj_btn_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:background="#ffffff"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/peijianku"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#89c997"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="单联打印"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#89c997"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="双联打印"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#89c997"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="取消结算"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/start_sy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#89c997"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="收银"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

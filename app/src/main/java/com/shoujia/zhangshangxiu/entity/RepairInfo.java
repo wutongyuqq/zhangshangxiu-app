@@ -4,6 +4,7 @@ public class RepairInfo {
     int id;
     String xlz;
     String xlg;
+    boolean isSelected;
 
     public int getId() {
         return id;
@@ -27,5 +28,13 @@ public class RepairInfo {
 
     public void setXlg(String xlg) {
         this.xlg = xlg;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

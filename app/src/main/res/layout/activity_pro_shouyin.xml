@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:gravity="center_horizontal"
+    android:scrollbars="none">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <include layout="@layout/nav_support" />
+
+            <include layout="@layout/info_support" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="预收款余额：0"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="未分配：￥5540"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7FF7FB"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="应收总计：￥5540"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="优惠：0"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EEEEEE"
+                android:paddingBottom="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="现金:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:background="#89c997"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="全额支付"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="刷卡:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:background="#89c997"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="全额支付"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="银行账户:"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="费率:"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333"
+                            android:text="0.0055"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="银行转账:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:background="#89c997"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="全额支付"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="银行账户:"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="会员卡号:"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:background="#89c997"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="查余额"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="扣除余额￥:"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="挂账金额:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:background="#89c997"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="全额支付"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="微信:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:background="#89c997"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="全额支付"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="费率:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="支付宝:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:background="#89c997"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="全额支付"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="费率:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="预收款抵扣:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:padding="2dp"
+                            android:text="可获得养车币:￥"
+                            android:textColor="#333333" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="2"
+                            android:background="#ffffff"
+                            android:gravity="left"
+                            android:padding="2dp"
+                            android:textColor="#333333" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#89c997"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="收银"
+            android:textColor="#ffffff" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

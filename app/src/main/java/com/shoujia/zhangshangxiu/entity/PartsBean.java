@@ -1,6 +1,7 @@
 package com.shoujia.zhangshangxiu.entity;
 
 public class PartsBean {
+	private int id;
 	private String pjbm;
 	private String pjmc;
 	private String ck;
@@ -13,6 +14,15 @@ public class PartsBean {
 	private String pjjj;
 	private String kcl;
 	private String xsj;
+	private boolean isSelected;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getPjbm() {
 		return pjbm == null?"":pjbm;
@@ -108,5 +118,13 @@ public class PartsBean {
 
 	public void setXsj(String xsj) {
 		this.xsj = xsj;
+	}
+
+	public boolean isSelected() {
+		return isSelected;
+	}
+
+	public void setSelected(boolean selected) {
+		isSelected = selected;
 	}
 }

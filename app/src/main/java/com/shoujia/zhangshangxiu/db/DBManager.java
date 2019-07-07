@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import com.shoujia.zhangshangxiu.entity.CarInfo;
 import com.shoujia.zhangshangxiu.entity.FirstIconInfo;
 import com.shoujia.zhangshangxiu.entity.PartsBean;
+import com.shoujia.zhangshangxiu.entity.ProjectBean;
 import com.shoujia.zhangshangxiu.entity.RepairInfo;
 import com.shoujia.zhangshangxiu.entity.SecondIconInfo;
 
@@ -93,7 +94,7 @@ public class DBManager {
             Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
             //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
             //Cursor cursor = db.rawQuery()
-            if (cursor.moveToFirst()) {
+           if (cursor!=null) {
                 while (cursor.moveToNext()) {
                     CarInfo bean = new CarInfo();
                     int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -167,7 +168,7 @@ public class DBManager {
             Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
             //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
             //Cursor cursor = db.rawQuery()
-            if (cursor.moveToFirst()) {
+           if (cursor!=null) {
                 while (cursor.moveToNext()) {
                     CarInfo bean = new CarInfo();
                     int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -258,7 +259,7 @@ public class DBManager {
             //加上的代码
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+          e.printStackTrace();
         } finally {
             db.endTransaction();
             db.close();
@@ -332,7 +333,7 @@ public class DBManager {
             //加上的代码
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+          e.printStackTrace();
         } finally {
             db.endTransaction();
             db.close();
@@ -353,7 +354,7 @@ public class DBManager {
             Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
             //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
             //Cursor cursor = db.rawQuery()
-            if (cursor.moveToFirst()) {
+           if (cursor!=null) {
                 while (cursor.moveToNext()) {
                     RepairInfo bean = new RepairInfo();
                     int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -380,6 +381,90 @@ public class DBManager {
     }
 
 
+
+    //获取修理组信息列表
+    public List<RepairInfo> queryRepairZuListData() {
+        List<RepairInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  *,count(distinct xlz)  FROM " + DBHelper.REPAIR_TABLE_NAME;
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    RepairInfo bean = new RepairInfo();
+                    int id = cursor.getInt(cursor.getColumnIndex("id"));
+                    String xlz = cursor.getString(cursor.getColumnIndex("xlz"));
+                    String xlg = cursor.getString(cursor.getColumnIndex("xlg"));
+                    bean.setId(id);
+                    bean.setXlz(xlz);
+                    bean.setXlg(xlg);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        return beanList;
+    }
+
+
+
+
+    //获取修理组信息列表
+    public List<RepairInfo> queryRepairPersonListData(String xlzStr) {
+        List<RepairInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  *,count(distinct xlg)  FROM " + DBHelper.REPAIR_TABLE_NAME + " where xlz='"+xlzStr+"'";
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    RepairInfo bean = new RepairInfo();
+                    int id = cursor.getInt(cursor.getColumnIndex("id"));
+                    String xlz = cursor.getString(cursor.getColumnIndex("xlz"));
+                    String xlg = cursor.getString(cursor.getColumnIndex("xlg"));
+                    bean.setId(id);
+                    bean.setXlz(xlz);
+                    bean.setXlg(xlg);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        return beanList;
+    }
+
+
+
     //插入汽车信息列表
     public void insertRepairListData(List<RepairInfo> repairInfos) {
         List<RepairInfo> beanList = new ArrayList<>();
@@ -398,7 +483,7 @@ public class DBManager {
             //加上的代码
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+          e.printStackTrace();
         } finally {
             db.endTransaction();
             db.close();
@@ -419,7 +504,7 @@ public class DBManager {
             Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
             //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
             //Cursor cursor = db.rawQuery()
-            if (cursor.moveToFirst()) {
+           if (cursor!=null) {
                 while (cursor.moveToNext()) {
                     FirstIconInfo info = new FirstIconInfo();
                     int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -468,21 +553,66 @@ public class DBManager {
             //加上的代码
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
         } finally {
             db.endTransaction();
             db.close();
         }
     }
 
-
+    public List<PartsBean> getPartsListData(){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        List<PartsBean> partsBeans = new ArrayList<>();
+        try{
+            String sql = "SELECT  *  FROM " + DBHelper.PARTS_INFO_TABLE_NAME;
+            db.beginTransaction();
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    PartsBean bean = new PartsBean();
+                    int id = cursor.getInt(cursor.getColumnIndex("id"));
+                    String pjbm = cursor.getString(cursor.getColumnIndex("pjbm"));
+                    String pjmc = cursor.getString(cursor.getColumnIndex("pjmc"));
+                    String ck = cursor.getString(cursor.getColumnIndex("ck"));
+                    String cd = cursor.getString(cursor.getColumnIndex("cd"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String dw = cursor.getString(cursor.getColumnIndex("dw"));
+                    String cangwei = cursor.getString(cursor.getColumnIndex("cangwei"));
+                    String bz = cursor.getString(cursor.getColumnIndex("bz"));
+                    String type = cursor.getString(cursor.getColumnIndex("type"));
+                    String kcl = cursor.getString(cursor.getColumnIndex("kcl"));
+                    String xsj = cursor.getString(cursor.getColumnIndex("xsj"));
+                    String pjjj = cursor.getString(cursor.getColumnIndex("pjjj"));
+                    bean.setPjbm(pjbm);
+                    bean.setPjmc(pjmc);
+                    bean.setCk(ck);
+                    bean.setCd(cd);
+                    bean.setCx(cx);
+                    bean.setDw(dw);
+                    bean.setCangwei(cangwei);
+                    bean.setType(type);
+                    bean.setBz(bz);
+                    bean.setKcl(kcl);
+                    bean.setXsj(xsj);
+                    bean.setPjjj(pjjj);
+                    partsBeans.add(bean);
+                }
+            }
+            //加上的代码
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+        return partsBeans;
+    }
     //插入一级页面数据列表
     public void insertPartsListData(List<PartsBean> partsBeans) {
         if (dbHelper == null || partsBeans == null) {
             return;
         }
-
-
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.beginTransaction();
         db.execSQL("delete from "+DBHelper.PARTS_INFO_TABLE_NAME);
@@ -502,12 +632,12 @@ public class DBManager {
                 values.put("kcl", info.getKcl());
                 values.put("xsj", info.getXsj());
                 values.put("pjjj", info.getPjjj());
-                db.insert(DBHelper.FIRST_ICON_TABLE_NAME, null, values);
+                db.insert(DBHelper.PARTS_INFO_TABLE_NAME, null, values);
             }
             //加上的代码
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
         } finally {
             db.endTransaction();
             db.close();
@@ -515,6 +645,25 @@ public class DBManager {
     }
 
 
+    //插入一级页面数据列表
+    public void updatePartsData(ProjectBean projectsBean) {
+        if (dbHelper == null || projectsBean == null) {
+            return;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String  updateSql ="update "+DBHelper.SECOND_ICON_TABLE_NAME+" set xlf='"+projectsBean.getXlf()+"' where mc='"+projectsBean.getXlxm()+"'";
+            db.execSQL(updateSql);
+            //加上的代码
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
 
 
 
@@ -531,7 +680,7 @@ public class DBManager {
             Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
             //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
             //Cursor cursor = db.rawQuery()
-            if (cursor.moveToFirst()) {
+            if (cursor!=null) {
                 while (cursor.moveToNext()) {
                     SecondIconInfo bean = new SecondIconInfo();
                     int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -575,6 +724,123 @@ public class DBManager {
     }
 
 
+    //获取汽车信息列表
+    public List<SecondIconInfo> querySecondIconListData(String name) {
+        List<SecondIconInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  *  FROM " + DBHelper.SECOND_ICON_TABLE_NAME + " where wxgz='"+name+"'";
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    SecondIconInfo bean = new SecondIconInfo();
+                    int id = cursor.getInt(cursor.getColumnIndex("id"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String is_quick_project = cursor.getString(cursor.getColumnIndex("is_quick_project"));
+                    String lb = cursor.getString(cursor.getColumnIndex("lb"));
+                    String mc = cursor.getString(cursor.getColumnIndex("mc"));
+                    String pgzgs = cursor.getString(cursor.getColumnIndex("pgzgs"));
+                    String pycode = cursor.getString(cursor.getColumnIndex("pycode"));
+                    String spj = cursor.getString(cursor.getColumnIndex("spj"));
+                    String tybz = cursor.getString(cursor.getColumnIndex("tybz"));
+                    String wxgz = cursor.getString(cursor.getColumnIndex("wxgz"));
+                    String xlf = cursor.getString(cursor.getColumnIndex("xlf"));
+
+                    bean.setId(id);
+                    bean.setCx(cx);
+                    bean.setIs_quick_project(is_quick_project);
+                    bean.setLb(lb);
+                    bean.setMc(mc);
+                    bean.setPgzgs(pgzgs);
+                    bean.setPycode(pycode);
+                    bean.setSpj(spj);
+                    bean.setTybz(tybz);
+                    bean.setWxgz(wxgz);
+                    bean.setXlf(xlf);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        return beanList;
+    }
+
+
+
+    //获取汽车信息列表
+    public SecondIconInfo querySecondIconData(int id) {
+        List<SecondIconInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  *  FROM " + DBHelper.SECOND_ICON_TABLE_NAME + " where id="+id;
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    SecondIconInfo bean = new SecondIconInfo();
+                    int sid = cursor.getInt(cursor.getColumnIndex("id"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String is_quick_project = cursor.getString(cursor.getColumnIndex("is_quick_project"));
+                    String lb = cursor.getString(cursor.getColumnIndex("lb"));
+                    String mc = cursor.getString(cursor.getColumnIndex("mc"));
+                    String pgzgs = cursor.getString(cursor.getColumnIndex("pgzgs"));
+                    String pycode = cursor.getString(cursor.getColumnIndex("pycode"));
+                    String spj = cursor.getString(cursor.getColumnIndex("spj"));
+                    String tybz = cursor.getString(cursor.getColumnIndex("tybz"));
+                    String wxgz = cursor.getString(cursor.getColumnIndex("wxgz"));
+                    String xlf = cursor.getString(cursor.getColumnIndex("xlf"));
+
+                    bean.setId(sid);
+                    bean.setCx(cx);
+                    bean.setIs_quick_project(is_quick_project);
+                    bean.setLb(lb);
+                    bean.setMc(mc);
+                    bean.setPgzgs(pgzgs);
+                    bean.setPycode(pycode);
+                    bean.setSpj(spj);
+                    bean.setTybz(tybz);
+                    bean.setWxgz(wxgz);
+                    bean.setXlf(xlf);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        if(beanList!=null&&beanList.size()>0){
+            return beanList.get(0);
+        }
+        return null;
+    }
+
     //插入汽车信息列表
     public void insertSecondIconListData(List<SecondIconInfo> infos) {
         List<CarInfo> beanList = new ArrayList<>();
@@ -602,7 +868,7 @@ public class DBManager {
             //加上的代码
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
         } finally {
             db.endTransaction();
             db.close();
