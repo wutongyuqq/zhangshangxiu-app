@@ -20,6 +20,7 @@
 
 
             <TextView
+                android:id="@+id/tv_gls"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -29,6 +30,7 @@
                 android:text="公里数:1121" />
 
             <TextView
+                android:id="@+id/tv_ywgdate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -40,12 +42,15 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/guzhangmiaoshu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:drawableRight="@drawable/edit"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="故障描述" />
 
         <LinearLayout
@@ -62,7 +67,12 @@
                 android:background="#7FF7FB"
                 android:orientation="horizontal"
                 android:padding="10dp">
-
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:text="序号" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -90,6 +100,13 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="优惠" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="操作" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

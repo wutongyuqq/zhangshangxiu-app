@@ -32,6 +32,7 @@ public class SplashActivity extends Activity {
                     Thread.sleep(2000);
                     Intent intent = new Intent(context,PhoneLoginActivity.class);
                     startActivity(intent);
+                    finish();
                 }catch (Exception e){
                     e.printStackTrace();
                 }

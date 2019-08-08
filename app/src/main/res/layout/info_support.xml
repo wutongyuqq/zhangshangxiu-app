@@ -16,9 +16,9 @@
 
         <TextView
             android:id="@+id/person_head"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="张三"
+            android:layout_weight="1"
             android:textColor="#ffffff"
             android:drawableLeft="@drawable/car_person"
             android:gravity="center"
@@ -29,9 +29,9 @@
 
         <TextView
             android:id="@+id/car_cp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="闽A16987"
+            android:layout_weight="1"
             android:textColor="#ffffff"
             android:gravity="center"
             android:layout_marginLeft="110dp"

@@ -29,14 +29,28 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="工时:" />
-
-                <TextView
+                    android:text="工时" />
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="总计:" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="总计:" />
+                    <TextView
+                        android:id="@+id/xlfTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="" />
+
+                </LinearLayout>
+
+
 
             </LinearLayout>
 
@@ -56,6 +70,7 @@
                     android:text="工时打折:" />
 
                 <TextView
+                    android:id="@+id/tv_xlfZk"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -77,9 +92,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="总应收(总计￥)：" />
+                    android:text="总应收" />
 
                 <TextView
+                    android:id="@+id/zongyingshou"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -98,6 +114,7 @@
 
 
                 <TextView
+                    android:id="@+id/beizhu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -1,6 +1,7 @@
 package com.shoujia.zhangshangxiu.base;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -10,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.shoujia.zhangshangxiu.dialog.WaitProgressDialog;
+import com.shoujia.zhangshangxiu.web.util.CustomProgressDialog;
 
 import java.lang.ref.WeakReference;
 
@@ -24,6 +28,8 @@ public abstract class BaseFragment extends Fragment{
 	protected String toastMsg = "";
 	protected String resJson = "";
 	protected MyHandler mHandler =null;
+	private static WaitProgressDialog waitingDialog;
+
 	// 回调函数:条件 当Fragment移除时
 	@Override
 	public void onDestroyView() {
@@ -70,4 +76,33 @@ public abstract class BaseFragment extends Fragment{
 			}
 		}
 	}
+
+
+	public static void showDialog(Context cont) {
+		try {
+			if (waitingDialog == null) {
+				waitingDialog = WaitProgressDialog.createDialog(cont);
+				// waitingDialog.setMessage("正在加载中...");
+			}
+			waitingDialog.setCanceledOnTouchOutside(false);
+			waitingDialog.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+	public static void dismissDialog() {
+		try {
+			if (waitingDialog != null) {
+				// waitingDialog.dismiss();
+				waitingDialog.dismiss();
+				waitingDialog = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

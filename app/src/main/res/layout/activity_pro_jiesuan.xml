@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:gravity="center_horizontal"
-    android:scrollbars="none">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/head_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
+    <include layout="@layout/nav_support" />
 
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/head_view"
+        android:gravity="center_horizontal"
+        android:scrollbars="none">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +33,6 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <include layout="@layout/nav_support" />
 
             <include layout="@layout/info_support" />
 
@@ -35,6 +49,7 @@
                     android:paddingBottom="5dp">
 
                     <TextView
+                        android:id="@+id/jsd_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -43,6 +58,7 @@
                         android:textColor="#333333" />
 
                     <TextView
+                        android:id="@+id/ywg_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -60,6 +76,7 @@
                     android:paddingBottom="2dp">
 
                     <TextView
+
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -69,6 +86,7 @@
                         android:textColor="#999999" />
 
                     <TextView
+                        android:id="@+id/factoy_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -97,6 +115,7 @@
                         android:textColor="#999999" />
 
                     <TextView
+                        android:id="@+id/custome_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -125,6 +144,7 @@
                         android:textColor="#999999" />
 
                     <TextView
+                        android:id="@+id/cp_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -153,6 +173,7 @@
                         android:textColor="#999999" />
 
                     <TextView
+                        android:id="@+id/cjh_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -181,6 +202,7 @@
                         android:textColor="#999999" />
 
                     <TextView
+                        android:id="@+id/cx_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -209,6 +231,7 @@
                         android:textColor="#999999" />
 
                     <TextView
+                        android:id="@+id/jclc_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -237,6 +260,7 @@
                         android:textColor="#999999" />
 
                     <TextView
+                        android:id="@+id/gz_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -297,47 +321,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/pro_lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="发动机总成大修"
-                        android:textColor="#999999" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="￥1800.00"
-                        android:textColor="#999999" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="0.00"
-                        android:textColor="#999999" />
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -400,57 +389,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/part_lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="发动机总成大修"
-                        android:textColor="#999999" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="￥1800.00"
-                        android:textColor="#999999" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="0.00"
-                        android:textColor="#999999" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="100"
-                        android:textColor="#999999" />
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -469,68 +413,147 @@
                 android:paddingLeft="30dp"
                 android:textColor="#333333"
                 android:text="应收总计：￥5540"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/pj_btn_lay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:background="#ffffff"
-            >
-
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="1px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="#333333" />
 
-                <TextView
-                    android:id="@+id/peijianku"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:background="#89c997"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="单联打印"
-                    android:textColor="#ffffff" />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:background="#89c997"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="双联打印"
-                    android:textColor="#ffffff" />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:background="#89c997"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="取消结算"
-                    android:textColor="#ffffff" />
-            </LinearLayout>
             <TextView
-                android:id="@+id/start_sy"
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#89c997"
                 android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="收银"
-                android:textColor="#ffffff" />
+                android:paddingLeft="30dp"
+                android:textColor="#333333"
+                android:text="地址：浙江省宁波是北仑区甬江路2好"/>
+            <TextView
+                android:id="@+id/telPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="30dp"
+                android:textColor="#333333"
+                android:text="电话：0574-26893399，传真："/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="#333333" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="客户签字："/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="接待签字："/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="日期："/>
+
+            <TextView
+                android:id="@+id/memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="备注："/>
+
+            <TextView
+                android:id="@+id/dytime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="打印时间："/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
+
         </LinearLayout>
+
 
     </RelativeLayout>
 
 </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/pj_btn_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/sing_print"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#89c997"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="单联打印"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/double_print"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#89c997"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="双联打印"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/cancle_jiesuan"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#89c997"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="取消结算"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/start_sy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#89c997"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="收银"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+</RelativeLayout>

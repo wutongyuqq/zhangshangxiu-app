@@ -23,7 +23,6 @@
             android:textSize="17sp" />
 
         <LinearLayout
-            android:id="@+id/content_line_lay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -97,6 +96,7 @@
                     android:layout_marginTop="10dp"
                     android:text="项目价格："
                     android:textColor="#333333"
+
                     android:textSize="17sp" />
 
                 <EditText
@@ -108,6 +108,7 @@
                     android:background="#eeeeee"
                     android:hint="请填写"
                     android:padding="5dp"
+                    android:inputType="number|numberDecimal"
                     android:textColor="#333333"
                     android:textSize="17sp" />
             </LinearLayout>
@@ -136,6 +137,7 @@
                     android:background="#eeeeee"
                     android:hint="请填写"
                     android:padding="5dp"
+                    android:inputType="number|numberDecimal"
                     android:textColor="#333333"
                     android:textSize="17sp" />
             </LinearLayout>

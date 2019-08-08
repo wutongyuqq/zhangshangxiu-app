@@ -2,6 +2,7 @@ package com.shoujia.zhangshangxiu.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class ProjectPaigongDialog {
     private OnClickListener onClickListener;
 
     TextView right_btn;
+    TextView title;
 
 
     public ProjectPaigongDialog(Context context) {
@@ -34,6 +36,11 @@ public class ProjectPaigongDialog {
     }
     public void setOnClickListener(OnClickListener onClickListener){
         this.onClickListener = onClickListener;
+    }
+    public void setTitle(String titleStr){
+        if(title!=null&&!TextUtils.isEmpty(titleStr)){
+            title.setText(titleStr);
+        }
     }
 
 
@@ -44,8 +51,14 @@ public class ProjectPaigongDialog {
         View view = View.inflate(mContext, R.layout.dialog_peoject_paigong, null);
          ListView listview1 = view.findViewById(R.id.listview1);
          ListView listview2 = view.findViewById(R.id.listview2);
+        title = view.findViewById(R.id.title);
+
         final DBManager dbManager = DBManager.getInstanse(mContext);
-        final List<RepairInfo> repairInfos = dbManager.queryRepairZuListData();
+        RepairInfo sinfo = new RepairInfo();
+        sinfo.setXlz("全部");
+        final List<RepairInfo> repairInfos = new ArrayList<>();
+        repairInfos.add(sinfo);
+        repairInfos.addAll(dbManager.queryRepairZuListData());
         final List<RepairInfo> repairInfos2 = new ArrayList<>();
         final DialogPaigongAdapter adapter1 = new DialogPaigongAdapter(mContext,repairInfos);
         final DialogPaigongPersonAdapter adapter2 = new DialogPaigongPersonAdapter(mContext,repairInfos2);
@@ -54,9 +67,11 @@ public class ProjectPaigongDialog {
         listview2.setAdapter(adapter2);
         if(repairInfos!=null&&repairInfos.size()>0){
             RepairInfo info = repairInfos.get(0);
+            info.setSelected(true);
             List<RepairInfo> infos = dbManager.queryRepairPersonListData(info.getXlz());
             if(infos!=null&&infos.size()>0){
                 repairInfos2.addAll(dbManager.queryRepairPersonListData(info.getXlz()));
+
             }
         }
         adapter2.notifyDataSetChanged();
@@ -66,8 +81,11 @@ public class ProjectPaigongDialog {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 RepairInfo info3 = repairInfos.get(i);
                 if(info3.isSelected()){
-                    info3.setSelected(false);
+
                 }else{
+                    for(RepairInfo rInfo:repairInfos){
+                        rInfo.setSelected(false);
+                    }
                     info3.setSelected(true);
                 }
                 adapter1.notifyDataSetChanged();
@@ -88,7 +106,6 @@ public class ProjectPaigongDialog {
                 }else{
                     info4.setSelected(true);
                 }
-                repairInfos2.set(i,info4);
                 adapter2.notifyDataSetChanged();
             }
         });

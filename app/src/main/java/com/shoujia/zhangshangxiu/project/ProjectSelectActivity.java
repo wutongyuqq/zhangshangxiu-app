@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.shoujia.zhangshangxiu.R;
 import com.shoujia.zhangshangxiu.base.BaseActivity;
 import com.shoujia.zhangshangxiu.db.DBManager;
+import com.shoujia.zhangshangxiu.entity.CarInfo;
 import com.shoujia.zhangshangxiu.entity.FirstIconInfo;
 import com.shoujia.zhangshangxiu.entity.SecondIconInfo;
 import com.shoujia.zhangshangxiu.home.help.HomeDataHelper;
@@ -42,6 +43,7 @@ public class ProjectSelectActivity extends BaseActivity implements View.OnClickL
 	SecondIconInfo mSecondIconInfo;
   private GridLayout gridLayout1,gridLayout2;
 	private SharePreferenceManager sp;
+	InfoSupport mInFoupport;
 	List<SecondIconInfo> secondIconInfos = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class ProjectSelectActivity extends BaseActivity implements View.OnClickL
 		tv_by.setOnClickListener(this);
 		gridLayout1 = findViewById(R.id.gridlayout1);
 		gridLayout2 = findViewById(R.id.gridlayout2);
-		new InfoSupport(this);
+		mInFoupport = new InfoSupport(this);
 		sp = new SharePreferenceManager(this);
 		initView();
 		initData();
@@ -124,7 +126,11 @@ public class ProjectSelectActivity extends BaseActivity implements View.OnClickL
 	}
 
 	private void upLoadServer(){
-
+		if(mSecondIconInfo==null){
+			toastMsg ="您还未选择项目";
+			mHandler.sendEmptyMessage(TOAST_MSG);
+			return;
+		}
 		Map<String, String> dataMap = new HashMap<>();
 		dataMap.put("db", sp.getString(Constance.Data_Source_name));
 		dataMap.put("function", "sp_fun_upload_maintenance_project_detail");
@@ -198,6 +204,41 @@ public class ProjectSelectActivity extends BaseActivity implements View.OnClickL
 	//初始化数据
 	private void initData(){
 
+		DBManager db = DBManager.getInstanse(this);
+		List<FirstIconInfo> firstIconInfos = db.queryFirstIconListData();
+		if(firstIconInfos==null||firstIconInfos.size()==0){
+			HomeDataHelper homeDataHelper = new HomeDataHelper(this);
+			homeDataHelper.getFirstIconList(new HomeDataHelper.InsertDataListener() {
+				@Override
+				public void onSuccess() {
+					DBManager.getInstanse(ProjectSelectActivity.this).close();
+					getSecondInconList();
+				}
+
+				@Override
+				public void onFail() {
+					DBManager.getInstanse(ProjectSelectActivity.this).close();
+					getSecondInconList();
+				}
+			});
+		}else{
+			mHandler.sendEmptyMessage(4);
+		}
+	}
+
+
+
+	private void getSecondInconList(){
+		DBManager db = DBManager.getInstanse(this);
+		List<SecondIconInfo> secondIconInfos = db.querySecondIconListData();
+		if(secondIconInfos==null||secondIconInfos.size()==0){
+
+			HomeDataHelper homeDataHelper = new HomeDataHelper(this);
+			homeDataHelper.getSecondIconList();
+
+		}else{
+			mHandler.sendEmptyMessage(5);
+		}
 
 	}
 

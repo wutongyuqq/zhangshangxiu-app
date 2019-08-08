@@ -46,7 +46,6 @@ public class OrderTempEditDialog {
         final EditText edit_pro_lb = view.findViewById(R.id.edit_pro_lb);
         final LinearLayout save_new_price = view.findViewById(R.id.save_new_price);
         final ImageView save_new_price_img = view.findViewById(R.id.save_new_price_img);
-        edit_num = view.findViewById(R.id.edit_num);
         right_btn = view.findViewById(R.id.btn_right);
         btn_left = view.findViewById(R.id.btn_left);
         edit_name.setText(mProjectBean.getXlxm());
@@ -63,7 +62,7 @@ public class OrderTempEditDialog {
         right_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(edit_num.getText()!=null) {
+
                     if(edit_name.getText()!=null){
                         mProjectBean.setXlxm(edit_name.getText().toString());
                     }
@@ -86,7 +85,6 @@ public class OrderTempEditDialog {
                     }
                     onClickListener.rightBtnClick(mProjectBean);
                     dismiss();
-                }
             }
         });
         btn_left.setOnClickListener(new View.OnClickListener() {

@@ -10,15 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <include layout="@layout/nav_support"/>
-        <include layout="@layout/info_support"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp">
             <TextView
+                android:id="@+id/shigong_level"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -26,6 +25,7 @@
                 android:text="施工绩效："/>
 
             <TextView
+                android:id="@+id/sale_level"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -77,6 +77,7 @@
 
 
             <TextView
+                android:id="@+id/select_date_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2019-09-10"
@@ -97,6 +98,7 @@
                 />
 
             <TextView
+                android:id="@+id/select_date_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2019-09-10"
@@ -108,6 +110,7 @@
                 android:paddingRight="10dp" />
 
             <ImageView
+                android:id="@+id/query_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
@@ -116,11 +119,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/base_info"
+            android:id="@+id/xiaoshou_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,12 +135,12 @@
                     android:layout_weight="1.2"
                     android:gravity="center"
                     android:background="#FBE2E2"
-                    android:text="车架号"
+                    android:text="接待车次"
                     android:padding="10dp"
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/chejiahao"
+                    android:id="@+id/jdcc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -168,7 +170,7 @@
                     android:textSize="17sp" />
 
                 <TextView
-
+                    android:id="@+id/xsxms"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -198,6 +200,7 @@
                     android:textSize="17sp" />
 
                 <TextView
+                    android:id="@+id/xszje"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -226,6 +229,7 @@
                     android:textSize="17sp" />
 
                 <TextView
+                    android:id="@+id/sslr"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -254,7 +258,7 @@
                     android:textSize="17sp" />
 
                 <TextView
-
+                    android:id="@+id/ssjx"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -274,7 +278,7 @@
 
 
         <LinearLayout
-
+            android:id="@+id/shigong_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -292,11 +296,12 @@
                     android:layout_weight="1.2"
                     android:gravity="center"
                     android:background="#FBE2E2"
-                    android:text="车架号"
+                    android:text="施工车次"
                     android:padding="10dp"
                     android:textSize="17sp" />
 
                 <TextView
+                    android:id="@+id/sgcc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -321,12 +326,12 @@
                     android:layout_weight="1.2"
                     android:gravity="center"
                     android:background="#FBE2E2"
-                    android:text="销售项目数"
+                    android:text="施工项目数"
                     android:padding="10dp"
                     android:textSize="17sp" />
 
                 <TextView
-
+                    android:id="@+id/sgxms"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -351,11 +356,42 @@
                     android:layout_weight="1.2"
                     android:gravity="center"
                     android:background="#FBE2E2"
-                    android:text="销售总金额"
+                    android:text="项目总额"
                     android:padding="10dp"
                     android:textSize="17sp" />
 
                 <TextView
+                    android:id="@+id/xmze"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="#EEEEEE"
+                    android:gravity="left"
+                    android:text="0"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:gravity="center"
+                    android:background="#FBE2E2"
+                    android:text="项目利润"
+                    android:padding="10dp"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/xmlr"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -379,11 +415,12 @@
                     android:layout_weight="1.2"
                     android:gravity="center"
                     android:background="#FBE2E2"
-                    android:text="销售利润"
+                    android:text="总工时"
                     android:padding="10dp"
                     android:textSize="17sp" />
 
                 <TextView
+                    android:id="@+id/zgs"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -407,12 +444,12 @@
                     android:layout_weight="1.2"
                     android:gravity="center"
                     android:background="#FBE2E2"
-                    android:text="销售绩效"
+                    android:text="施工绩效"
                     android:padding="10dp"
                     android:textSize="17sp" />
 
                 <TextView
-
+                    android:id="@+id/sgjx"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -425,7 +462,9 @@
                     android:textSize="17sp"/>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/pro_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -466,5 +505,67 @@
                 android:text="销售绩效"/>
         </LinearLayout>
 
+
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/shigong_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="项目名称"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="项目数"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="项目总额"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="利润"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="绩效"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/pro_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"/>
+
+        <ListView
+            android:id="@+id/shigong_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:scrollbars="none"/>
     </LinearLayout>
 </ScrollView>

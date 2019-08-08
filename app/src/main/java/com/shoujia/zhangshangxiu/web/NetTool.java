@@ -89,6 +89,52 @@ public class NetTool {
 			return newTokenStr;
 		}
 	}
+
+	private String getTokenFromZsx(String access_token,String machine_code,String data_source){
+		if(access_token!=null&&!access_token.equals("")){
+			return access_token;
+		}
+		HttpClientService service = HttpClientService.getInstance();
+		Map<String,Object> postMap = new HashMap<String,Object>();
+		postMap.put("db", "sjsoft_SQL");
+		postMap.put("function", "sp_fun_machine_access_token");
+		postMap.put("data_source", data_source);//"首佳软件SQL");
+		postMap.put("machine_code", machine_code);//"4004564459");
+		postMap.put("access_token", access_token);
+		String json = JsonUtil.mapTojson(postMap);
+		String resJson = service.getDataFromZsx("http://121.43.148.193:5555/restful/pro", json);
+		Map<String,Object> resMap = JsonUtil.jsToMap(resJson);
+
+		String newTokenStr = resMap.get("machine_access_token")!=null? (String)resMap.get("machine_access_token"):"";
+
+		if(newTokenStr.equals("")){
+
+			String grant_type="client_credentials";
+			long timestamp = System.currentTimeMillis()/1000;
+			String sign=MD5.MD5Encode(client_id+timestamp+access_token).toLowerCase();//用户id
+			String scope="all";//用户id
+			String id=getUUID();
+			String tokenStr = LAVApi.getToken(client_id, grant_type, sign, scope, timestamp+"", id);
+			Map<String,Object> tkMap = JsonUtil.jsToMap(tokenStr);
+			Map<String, Object> bodyMap = (Map<String, Object>) tkMap.get("body");
+			final String tk_access_token = bodyMap!=null&&bodyMap.get("access_token")!=null?(String)bodyMap.get("access_token"):"";
+			if(!tk_access_token.equals("")){
+				new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						sendTokenToServer(tk_access_token);
+
+					}
+				});
+
+			}
+			return tk_access_token;
+		}else{
+			return newTokenStr;
+		}
+	}
+
 	//发送token到首佳软件服务器
 	private void sendTokenToServer(String access_token){
 		HttpClientService service = HttpClientService.getInstance();

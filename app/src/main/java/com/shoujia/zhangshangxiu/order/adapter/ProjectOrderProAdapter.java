@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.shoujia.zhangshangxiu.R;
 import com.shoujia.zhangshangxiu.entity.CarInfo;
 import com.shoujia.zhangshangxiu.entity.ProjectBean;
+import com.shoujia.zhangshangxiu.order.entity.OrderBeanInfo;
 
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class ProjectOrderProAdapter extends BaseAdapter {
             hodler = (Hodler) convertView.getTag();
         }
         ProjectBean bean = listData.get(position);
-        hodler.tv_num.setText(bean.getXh());
+        hodler.tv_num.setText((position+1)+"");
         hodler.pro_name.setText(bean.getXlxm());
         hodler.pro_type.setText(bean.getWxgz());
         hodler.tv_xlf.setText(bean.getXlf());
@@ -105,6 +106,9 @@ public class ProjectOrderProAdapter extends BaseAdapter {
                 deleteClickListener.deleteClick(position);
             }
         });
+        if(OrderBeanInfo.notDelete){
+            hodler.tv_delete.setVisibility(View.GONE);
+        }
 
         return convertView;
     }

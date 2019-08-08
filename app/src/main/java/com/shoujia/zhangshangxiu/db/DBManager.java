@@ -8,10 +8,14 @@ import android.text.TextUtils;
 
 import com.shoujia.zhangshangxiu.entity.CarInfo;
 import com.shoujia.zhangshangxiu.entity.FirstIconInfo;
+import com.shoujia.zhangshangxiu.entity.ManageInfo;
 import com.shoujia.zhangshangxiu.entity.PartsBean;
+import com.shoujia.zhangshangxiu.entity.PeijianBean;
 import com.shoujia.zhangshangxiu.entity.ProjectBean;
 import com.shoujia.zhangshangxiu.entity.RepairInfo;
 import com.shoujia.zhangshangxiu.entity.SecondIconInfo;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +62,7 @@ public class DBManager {
         }
     }
 
-    public long getTotalSize(String nameStr, String type) {
+    public long getTotalSize() {
         if (dbHelper == null) {
             return 0;
         }
@@ -79,22 +83,96 @@ public class DBManager {
         if (dbHelper == null) {
             return null;
         }
+        String limitStr =  "50 OFFSET 0";
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.beginTransaction();
         try {
-            String sql = "SELECT  *  FROM " + DBHelper.TABLE_NAME;
+            String sql = "SELECT  *  FROM " + DBHelper.TABLE_NAME +" LIMIT "+limitStr;
             if(TextUtils.isEmpty(param)){
 
             }else{
-                sql = "SELECT  *  FROM " + DBHelper.TABLE_NAME + " WHERE mc like '%"+param+"%'";
+                sql = "SELECT  *  FROM " + DBHelper.TABLE_NAME + " WHERE mc like '%"+param+"%'" +" LIMIT "+limitStr;
             }
             if(!isLike){
-                sql = "SELECT  *  FROM " + DBHelper.TABLE_NAME + " WHERE mc = '"+param+"'";
+                sql = "SELECT  *  FROM " + DBHelper.TABLE_NAME + " WHERE mc = '"+param+"'" +" LIMIT "+limitStr;
             }
             Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
             //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
             //Cursor cursor = db.rawQuery()
            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    CarInfo bean = new CarInfo();
+                    int id = cursor.getInt(cursor.getColumnIndex("id"));
+                    String cjhm = cursor.getString(cursor.getColumnIndex("cjhm"));
+                    String custom5 = cursor.getString(cursor.getColumnIndex("custom5"));
+                    String customer_id = cursor.getString(cursor.getColumnIndex("customer_id"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String cz = cursor.getString(cursor.getColumnIndex("cz"));
+                    String fdjhm = cursor.getString(cursor.getColumnIndex("fdjhm"));
+                    String linkman = cursor.getString(cursor.getColumnIndex("linkman"));
+                    String mc = cursor.getString(cursor.getColumnIndex("mc"));
+                    String mobile = cursor.getString(cursor.getColumnIndex("mobile"));
+                    String ns_date = cursor.getString(cursor.getColumnIndex("ns_date"));
+                    String openid = cursor.getString(cursor.getColumnIndex("openid"));
+                    String phone = cursor.getString(cursor.getColumnIndex("phone"));
+                    String vipnumber = cursor.getString(cursor.getColumnIndex("vipnumber"));
+                    String gzms = cursor.getString(cursor.getColumnIndex("gzms"));
+                    String gls = cursor.getString(cursor.getColumnIndex("gls"));
+                    String memo = cursor.getString(cursor.getColumnIndex("memo"));
+                    String keys_no = cursor.getString(cursor.getColumnIndex("keys_no"));
+
+                    bean.setId(id);
+                    bean.setCjhm(cjhm);
+                    bean.setCustom5(custom5);
+                    bean.setCustomer_id(customer_id);
+                    bean.setCx(cx);
+                    bean.setCz(cz);
+                    bean.setFdjhm(fdjhm);
+                    bean.setLinkman(linkman);
+                    bean.setMc(mc);
+                    bean.setMobile(mobile);
+                    bean.setNs_date(ns_date);
+                    bean.setOpenid(openid);
+                    bean.setPhone(phone);
+                    bean.setVipnumber(vipnumber);
+                    bean.setGzms(gzms);
+                    bean.setGls(gls);
+                    bean.setMemo(memo);
+                    bean.setKeys_no(keys_no);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        return beanList;
+    }
+
+
+    //获取汽车信息列表
+    public List<CarInfo> queryAllListData() {
+        List<CarInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String limitStr =  "50 OFFSET 0";
+            String sql = "SELECT  *  FROM " + DBHelper.TABLE_NAME +" LIMIT "+limitStr;
+
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
                 while (cursor.moveToNext()) {
                     CarInfo bean = new CarInfo();
                     int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -262,7 +340,7 @@ public class DBManager {
           e.printStackTrace();
         } finally {
             db.endTransaction();
-            db.close();
+            //db.close();
         }
 
     }
@@ -382,6 +460,41 @@ public class DBManager {
 
 
 
+    //获取修理工信息列表
+    public List<String> queryRepairListStringData() {
+        List<String> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  distinct xlz   FROM " + DBHelper.REPAIR_TABLE_NAME ;
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+
+                    String xlz = cursor.getString(cursor.getColumnIndex("xlz"));
+                    beanList.add(xlz);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        return beanList;
+    }
+
+
     //获取修理组信息列表
     public List<RepairInfo> queryRepairZuListData() {
         List<RepairInfo> beanList = new ArrayList<>();
@@ -391,19 +504,15 @@ public class DBManager {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.beginTransaction();
         try {
-            String sql = "SELECT  *,count(distinct xlz)  FROM " + DBHelper.REPAIR_TABLE_NAME;
+            String sql = "SELECT  distinct xlz  FROM " + DBHelper.REPAIR_TABLE_NAME;
             Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
             //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
             //Cursor cursor = db.rawQuery()
             if (cursor!=null) {
                 while (cursor.moveToNext()) {
                     RepairInfo bean = new RepairInfo();
-                    int id = cursor.getInt(cursor.getColumnIndex("id"));
                     String xlz = cursor.getString(cursor.getColumnIndex("xlz"));
-                    String xlg = cursor.getString(cursor.getColumnIndex("xlg"));
-                    bean.setId(id);
                     bean.setXlz(xlz);
-                    bean.setXlg(xlg);
                     beanList.add(bean);
                 }
             }
@@ -433,18 +542,17 @@ public class DBManager {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.beginTransaction();
         try {
-            String sql = "SELECT  *,count(distinct xlg)  FROM " + DBHelper.REPAIR_TABLE_NAME + " where xlz='"+xlzStr+"'";
+            String sql = "SELECT  distinct xlg  FROM " + DBHelper.REPAIR_TABLE_NAME + " where xlz='"+xlzStr+"'";
+            if(xlzStr.equals("全部")){
+                 sql = "SELECT  distinct xlg  FROM " + DBHelper.REPAIR_TABLE_NAME;
+            }
             Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
             //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
             //Cursor cursor = db.rawQuery()
             if (cursor!=null) {
                 while (cursor.moveToNext()) {
                     RepairInfo bean = new RepairInfo();
-                    int id = cursor.getInt(cursor.getColumnIndex("id"));
-                    String xlz = cursor.getString(cursor.getColumnIndex("xlz"));
                     String xlg = cursor.getString(cursor.getColumnIndex("xlg"));
-                    bean.setId(id);
-                    bean.setXlz(xlz);
                     bean.setXlg(xlg);
                     beanList.add(bean);
                 }
@@ -467,23 +575,47 @@ public class DBManager {
 
     //插入汽车信息列表
     public void insertRepairListData(List<RepairInfo> repairInfos) {
-        List<RepairInfo> beanList = new ArrayList<>();
         if (dbHelper == null || repairInfos == null) {
             return;
         }
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.beginTransaction();
         try {
-            ContentValues values = new ContentValues();
+            String deleteSql = "DELETE FROM " + DBHelper.REPAIR_TABLE_NAME;
+            db.execSQL(deleteSql);
+
+           // ContentValues values = new ContentValues();
             for (RepairInfo info : repairInfos) {
-                values.put("xlg", info.getXlg());
-                values.put("xlz", info.getXlz());
-                db.insert(DBHelper.REPAIR_TABLE_NAME, null, values);
+               // values.put("xlg", info.getXlg());
+                //values.put("xlz", info.getXlz());
+               // INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
+                String insertSql = "INSERT INTO " + DBHelper.REPAIR_TABLE_NAME+"(xlg,xlz) VALUES('"+ info.getXlg()+"','"+info.getXlz()+"') ";
+                //db.insert(DBHelper.REPAIR_TABLE_NAME, null, values);
+                db.execSQL(insertSql);
             }
             //加上的代码
             db.setTransactionSuccessful();
         } catch (Exception e) {
           e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            //db.close();
+        }
+    }
+
+
+    //插入汽车信息列表
+    public void deleteCarList() {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String deleteSql = "DELETE FROM " + DBHelper.TABLE_NAME;
+            db.execSQL(deleteSql);
+            //加上的代码
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             db.endTransaction();
             db.close();
@@ -556,7 +688,7 @@ public class DBManager {
             e.printStackTrace();
         } finally {
             db.endTransaction();
-            db.close();
+            //db.close();
         }
     }
 
@@ -608,6 +740,59 @@ public class DBManager {
         }
         return partsBeans;
     }
+
+
+
+
+    public List<PartsBean> getPartsListData(String pjmcStr){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        List<PartsBean> partsBeans = new ArrayList<>();
+        try{
+            String sql = "SELECT  *  FROM " + DBHelper.PARTS_INFO_TABLE_NAME +" where pjmc like '%"+pjmcStr+"%'";
+            db.beginTransaction();
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    PartsBean bean = new PartsBean();
+                    int id = cursor.getInt(cursor.getColumnIndex("id"));
+                    String pjbm = cursor.getString(cursor.getColumnIndex("pjbm"));
+                    String pjmc = cursor.getString(cursor.getColumnIndex("pjmc"));
+                    String ck = cursor.getString(cursor.getColumnIndex("ck"));
+                    String cd = cursor.getString(cursor.getColumnIndex("cd"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String dw = cursor.getString(cursor.getColumnIndex("dw"));
+                    String cangwei = cursor.getString(cursor.getColumnIndex("cangwei"));
+                    String bz = cursor.getString(cursor.getColumnIndex("bz"));
+                    String type = cursor.getString(cursor.getColumnIndex("type"));
+                    String kcl = cursor.getString(cursor.getColumnIndex("kcl"));
+                    String xsj = cursor.getString(cursor.getColumnIndex("xsj"));
+                    String pjjj = cursor.getString(cursor.getColumnIndex("pjjj"));
+                    bean.setPjbm(pjbm);
+                    bean.setPjmc(pjmc);
+                    bean.setCk(ck);
+                    bean.setCd(cd);
+                    bean.setCx(cx);
+                    bean.setDw(dw);
+                    bean.setCangwei(cangwei);
+                    bean.setType(type);
+                    bean.setBz(bz);
+                    bean.setKcl(kcl);
+                    bean.setXsj(xsj);
+                    bean.setPjjj(pjjj);
+                    partsBeans.add(bean);
+                }
+            }
+            //加上的代码
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+        return partsBeans;
+    }
+
     //插入一级页面数据列表
     public void insertPartsListData(List<PartsBean> partsBeans) {
         if (dbHelper == null || partsBeans == null) {
@@ -640,7 +825,7 @@ public class DBManager {
             e.printStackTrace();
         } finally {
             db.endTransaction();
-            db.close();
+            //db.close();
         }
     }
 
@@ -665,6 +850,26 @@ public class DBManager {
         }
     }
 
+
+    //插入一级页面数据列表
+    public void updatePeijianData(PeijianBean peijianBean) {
+        if (dbHelper == null || peijianBean == null) {
+            return;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String  updateSql ="update "+DBHelper.PARTS_INFO_TABLE_NAME+" set xsj='"+peijianBean.getSsj()+"' where pjmc='"+peijianBean.getPjmc()+"'";
+            db.execSQL(updateSql);
+            //加上的代码
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
 
 
     //获取汽车信息列表
@@ -843,14 +1048,13 @@ public class DBManager {
 
     //插入汽车信息列表
     public void insertSecondIconListData(List<SecondIconInfo> infos) {
-        List<CarInfo> beanList = new ArrayList<>();
         if (dbHelper == null || infos == null) {
             return;
         }
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         db.beginTransaction();
         try {
-            db.execSQL("delete from "+DBHelper.FIRST_ICON_TABLE_NAME);
+            db.execSQL("delete from "+DBHelper.SECOND_ICON_TABLE_NAME);
             ContentValues values = new ContentValues();
             for (SecondIconInfo bean : infos) {
                 values.put("cx", bean.getCx());
@@ -871,10 +1075,379 @@ public class DBManager {
             e.printStackTrace();
         } finally {
             db.endTransaction();
+            //db.close();
+        }
+
+    }
+
+
+
+    //插入汽车信息列表
+    public void insertManagerListData(List<ManageInfo> infos) {
+        List<CarInfo> beanList = new ArrayList<>();
+        if (dbHelper == null || infos == null) {
+            return;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            db.execSQL("delete from "+DBHelper.MANAGER_INFO_TABLE_NAME);
+            ContentValues values = new ContentValues();
+            for (ManageInfo bean : infos) {
+                values.put("assign", bean.getAssign());
+                values.put("cjhm", bean.getCjhm());
+                values.put("cp", bean.getCp());
+                values.put("cx", bean.getCx());
+                values.put("jc_date", bean.getJc_date());
+                values.put("jsd_id", bean.getJsd_id());
+                values.put("states", bean.getStates());
+                values.put("wxgz", bean.getWxgz());
+                values.put("xlg",bean.getXlg());
+                values.put("ywg_date", bean.getYwg_date());
+                values.put("jcr", bean.getJcr());
+                db.insert(DBHelper.MANAGER_INFO_TABLE_NAME, null, values);
+            }
+            //加上的代码
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
             db.close();
         }
 
     }
+
+
+
+
+
+    //获取汽车信息列表
+    public List<ManageInfo> queryManagerListData(String  orderByStr) {
+        List<ManageInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  *  FROM " + DBHelper.MANAGER_INFO_TABLE_NAME + "  ORDER BY "+ orderByStr;
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    ManageInfo bean = new ManageInfo();
+
+                    String assign = cursor.getString(cursor.getColumnIndex("assign"));
+                    String cjhm = cursor.getString(cursor.getColumnIndex("cjhm"));
+                    String cp = cursor.getString(cursor.getColumnIndex("cp"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String jc_date = cursor.getString(cursor.getColumnIndex("jc_date"));
+                    String jsd_id = cursor.getString(cursor.getColumnIndex("jsd_id"));
+                    String states = cursor.getString(cursor.getColumnIndex("states"));
+                    String wxgz = cursor.getString(cursor.getColumnIndex("wxgz"));
+                    String xlg = cursor.getString(cursor.getColumnIndex("xlg"));
+                    String ywg_date = cursor.getString(cursor.getColumnIndex("ywg_date"));
+
+
+                    bean.setCx(cx);
+                    bean.setAssign(assign);
+                    bean.setCjhm(cjhm);
+                    bean.setCp(cp);
+                    bean.setJc_date(jc_date);
+                    bean.setJsd_id(jsd_id);
+                    bean.setStates(states);
+                    bean.setXlg(xlg);
+                    bean.setWxgz(wxgz);
+                    bean.setYwg_date(ywg_date);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        if(beanList!=null&&beanList.size()>0){
+            return beanList;
+        }
+        return null;
+    }
+
+
+
+
+
+    //获取汽车信息列表
+    public List<ManageInfo> queryManagerListData(String  cp,String wxgz,String assign,String orderStr) {
+        List<ManageInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  *  FROM " + DBHelper.MANAGER_INFO_TABLE_NAME +" where 1=1";//+ "  where assign like '%"+ name+"%'";
+
+            if(!TextUtils.isEmpty(assign)){
+                sql = sql+" and  (assign like '%"+ assign +"%' or xlg like '%"+assign+"%')";
+            }
+
+            if(!TextUtils.isEmpty(wxgz)&&!wxgz.equals("全部")){
+                sql = sql+" and  wxgz like '%"+ wxgz +"%'";
+            }
+
+
+
+            if(!TextUtils.isEmpty(cp)){
+                sql = sql+" and  cp like '%"+ cp +"%'";
+            }
+
+            if(!TextUtils.isEmpty(orderStr)){
+                sql = sql+"  ORDER BY "+ orderStr;
+            }
+
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    ManageInfo bean = new ManageInfo();
+
+                    String assign1 = cursor.getString(cursor.getColumnIndex("assign"));
+                    String cjhm = cursor.getString(cursor.getColumnIndex("cjhm"));
+                    String cp1 = cursor.getString(cursor.getColumnIndex("cp"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String jc_date = cursor.getString(cursor.getColumnIndex("jc_date"));
+                    String jsd_id = cursor.getString(cursor.getColumnIndex("jsd_id"));
+                    String states = cursor.getString(cursor.getColumnIndex("states"));
+                    String wxgz1 = cursor.getString(cursor.getColumnIndex("wxgz"));
+                    String xlg = cursor.getString(cursor.getColumnIndex("xlg"));
+                    String ywg_date = cursor.getString(cursor.getColumnIndex("ywg_date"));
+                    String jcr = cursor.getString(cursor.getColumnIndex("jcr"));
+
+
+                    bean.setCx(cx);
+                    bean.setAssign(assign1);
+                    bean.setCjhm(cjhm);
+                    bean.setCp(cp1);
+                    bean.setJc_date(jc_date);
+                    bean.setJsd_id(jsd_id);
+                    bean.setStates(states);
+                    bean.setXlg(xlg);
+                    bean.setWxgz(wxgz1);
+                    bean.setYwg_date(ywg_date);
+                    bean.setJcr(jcr);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        if(beanList!=null&&beanList.size()>0){
+            return beanList;
+        }
+        return null;
+    }
+
+
+
+    //获取汽车信息列表
+    public List<ManageInfo> queryManagerList(String  cp,String states,String assign,String orderStr) {
+        List<ManageInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  *  FROM " + DBHelper.MANAGER_INFO_TABLE_NAME +" where 1=1";//+ "  where assign like '%"+ name+"%'";
+
+            if(!TextUtils.isEmpty(assign)){
+                sql = sql+" and  (assign like '%"+ assign +"%' or xlg like '%"+assign+"%')";
+            }
+
+            if(!TextUtils.isEmpty(states)&&!states.equals("全部")){
+                sql = sql+" and  states like '%"+ states +"%'";
+            }
+
+
+
+            if(!TextUtils.isEmpty(cp)){
+                sql = sql+" and  cp like '%"+ cp +"%'";
+            }
+
+            if(!TextUtils.isEmpty(orderStr)){
+                sql = sql+"  ORDER BY "+ orderStr;
+            }
+
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    ManageInfo bean = new ManageInfo();
+
+                    String assign1 = cursor.getString(cursor.getColumnIndex("assign"));
+                    String cjhm = cursor.getString(cursor.getColumnIndex("cjhm"));
+                    String cp1 = cursor.getString(cursor.getColumnIndex("cp"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String jc_date = cursor.getString(cursor.getColumnIndex("jc_date"));
+                    String jsd_id = cursor.getString(cursor.getColumnIndex("jsd_id"));
+                    String states1 = cursor.getString(cursor.getColumnIndex("states"));
+                    String wxgz1 = cursor.getString(cursor.getColumnIndex("wxgz"));
+                    String xlg = cursor.getString(cursor.getColumnIndex("xlg"));
+                    String ywg_date = cursor.getString(cursor.getColumnIndex("ywg_date"));
+                    String jcr = cursor.getString(cursor.getColumnIndex("jcr"));
+
+
+                    bean.setCx(cx);
+                    bean.setAssign(assign1);
+                    bean.setCjhm(cjhm);
+                    bean.setCp(cp1);
+                    bean.setJc_date(jc_date);
+                    bean.setJsd_id(jsd_id);
+                    bean.setStates(states1);
+                    bean.setXlg(xlg);
+                    bean.setWxgz(wxgz1);
+                    bean.setYwg_date(ywg_date);
+                    bean.setJcr(jcr);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        if(beanList!=null&&beanList.size()>0){
+            return beanList;
+        }
+        return null;
+    }
+
+
+
+    //获取汽车信息列表
+    public List<ManageInfo> queryWxgzListData(String  name) {
+        List<ManageInfo> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  *  FROM " + DBHelper.MANAGER_INFO_TABLE_NAME + "  where wxgz = '"+ name+"'";
+            if(name.equals("全部")){
+                sql = "SELECT  *  FROM " + DBHelper.MANAGER_INFO_TABLE_NAME;
+            }
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    ManageInfo bean = new ManageInfo();
+
+                    String assign = cursor.getString(cursor.getColumnIndex("assign"));
+                    String cjhm = cursor.getString(cursor.getColumnIndex("cjhm"));
+                    String cp = cursor.getString(cursor.getColumnIndex("cp"));
+                    String cx = cursor.getString(cursor.getColumnIndex("cx"));
+                    String jc_date = cursor.getString(cursor.getColumnIndex("jc_date"));
+                    String jsd_id = cursor.getString(cursor.getColumnIndex("jsd_id"));
+                    String states = cursor.getString(cursor.getColumnIndex("states"));
+                    String wxgz = cursor.getString(cursor.getColumnIndex("wxgz"));
+                    String xlg = cursor.getString(cursor.getColumnIndex("xlg"));
+                    String ywg_date = cursor.getString(cursor.getColumnIndex("ywg_date"));
+
+
+                    bean.setCx(cx);
+                    bean.setAssign(assign);
+                    bean.setCjhm(cjhm);
+                    bean.setCp(cp);
+                    bean.setJc_date(jc_date);
+                    bean.setJsd_id(jsd_id);
+                    bean.setStates(states);
+                    bean.setXlg(xlg);
+                    bean.setWxgz(wxgz);
+                    bean.setYwg_date(ywg_date);
+                    beanList.add(bean);
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        if(beanList!=null&&beanList.size()>0){
+            return beanList;
+        }
+        return null;
+    }
+
+
+
+    //获取修理组信息列表
+    public List<String> queryWxgzListData() {
+        List<String> beanList = new ArrayList<>();
+        if (dbHelper == null) {
+            return null;
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String sql = "SELECT  distinct wxgz  FROM " + DBHelper.MANAGER_INFO_TABLE_NAME;
+            Cursor cursor = db.rawQuery(sql, null, null);//db.query(DBHelper.TABLE_NAME,null,nameStr,typeArr,null,null,"watch_num",limit);
+            //String sql = "select * from "+DBHelper.TABLE_NAME+" where videotype";
+            //Cursor cursor = db.rawQuery()
+            if (cursor!=null) {
+                while (cursor.moveToNext()) {
+                    String wxgz = cursor.getString(cursor.getColumnIndex("wxgz"));
+                    if(!TextUtils.isEmpty(wxgz)) {
+                        beanList.add(wxgz);
+                    }
+                }
+            }
+            cursor.close();
+            // 设置事务标志为成功，当结束事务时就会提交事务
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 结束事务
+            db.endTransaction();
+            db.close();
+
+        }
+        return beanList;
+    }
+
 
     public void close(){
         if(dbHelper!=null) {

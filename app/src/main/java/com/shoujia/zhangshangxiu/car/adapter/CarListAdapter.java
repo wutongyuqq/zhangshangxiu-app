@@ -76,7 +76,7 @@ public class CarListAdapter extends BaseAdapter {
         hodler.tv_status.setText("状态："+bean.getStates());
         hodler.car_cjh.setText("车架号："+bean.getCjhm());
         hodler.car_jcsj.setText("进厂时间："+bean.getJc_date());
-        hodler.car_jdry.setText("接待人员："+bean.getAssign());
+        hodler.car_jdry.setText("接待人员："+bean.getJcr());
         hodler.car_cx.setText("车型："+bean.getCx());
         return convertView;
     }

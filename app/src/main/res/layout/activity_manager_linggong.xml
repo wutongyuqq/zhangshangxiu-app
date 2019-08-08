@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include layout="@layout/nav_support" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eeeeee"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:background="@drawable/car_bk_yel"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:textColor="#666666"
+                    android:text="闽ABC215"/>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/gou_blue"
+                        android:drawablePadding="3dp"
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:text="待领工"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/gou_blue"
+                        android:drawablePadding="3dp"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#666666"
+                        android:text="待派工"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:text="进厂时间：2019-06-15"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:text="预计提车：2019-06-15"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/select_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:tag="0"
+            android:background="#7FF7FB"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/right_now_no"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="全选/取消全选"/>
+        </LinearLayout>
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/first_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="调整派工"
+            android:textColor="#ffffff" />
+
+
+
+        <TextView
+            android:id="@+id/tv_linggong"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="领工"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/second_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_hr"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="换人"
+            android:textColor="#ffffff" />
+
+
+
+        <TextView
+            android:id="@+id/tv_jr"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="加人"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/tv_tg"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="退工"
+            android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/tv_sgwb"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="施工完毕"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/third_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_fg"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="返工"
+            android:textColor="#ffffff" />
+
+
+
+        <TextView
+            android:id="@+id/tv_jytg"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="检验通过"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/fourth_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_qxjy"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="取消检验"
+            android:textColor="#ffffff" />
+
+
+
+        <TextView
+            android:id="@+id/tv_go_tender"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#89c997"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="去工单"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -22,7 +22,12 @@ import android.widget.Toast;
 
 import com.shoujia.zhangshangxiu.R;
 import com.shoujia.zhangshangxiu.base.BaseFragment;
+import com.shoujia.zhangshangxiu.db.DBManager;
+import com.shoujia.zhangshangxiu.dialog.LoginOutDialog;
+import com.shoujia.zhangshangxiu.dialog.WaitProgressDialog;
+import com.shoujia.zhangshangxiu.home.HomeService;
 import com.shoujia.zhangshangxiu.home.help.HomeDataHelper;
+import com.shoujia.zhangshangxiu.login.PhoneLoginActivity;
 import com.shoujia.zhangshangxiu.web.MainActivity;
 import com.shoujia.zhangshangxiu.web.NetTool;
 
@@ -92,13 +97,15 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        HomeDataHelper helper = new HomeDataHelper(getActivity());
+         HomeDataHelper helper = new HomeDataHelper(getActivity());
         switch (v.getId()){
             case R.id.update_data:
-
+                showDialog(getContext());
                 helper.getFirstIconList(new HomeDataHelper.UpdateDataListener() {
                     @Override
                     public void onSuccess() {
+                        dismissDialog();
+                       // DBManager.getInstanse(getActivity()).close();
                         toastMsg = "更新项目数据成功";
                         mHandler.sendEmptyMessage(TOAST_MSG);
                     }
@@ -106,6 +113,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 helper.getPersonRepairList(new HomeDataHelper.UpdateDataListener() {
                     @Override
                     public void onSuccess() {
+                        dismissDialog();
+                       // DBManager.getInstanse(getActivity()).close();
                         toastMsg = "更新修理数据成功";
                         mHandler.sendEmptyMessage(TOAST_MSG);
                     }
@@ -113,6 +122,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 helper.getPartsList(new HomeDataHelper.UpdateDataListener() {
                     @Override
                     public void onSuccess() {
+                        dismissDialog();
+                       // DBManager.getInstanse(getActivity()).close();
                         toastMsg = "更新配件数据成功";
                         mHandler.sendEmptyMessage(TOAST_MSG);
                     }
@@ -120,15 +131,43 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 helper.getSecondIconList(new HomeDataHelper.UpdateDataListener() {
                     @Override
                     public void onSuccess() {
-                        toastMsg = "更新项目库数据成功";
-                        mHandler.sendEmptyMessage(TOAST_MSG);
+                        dismissDialog();
+                       // DBManager.getInstanse(getActivity()).close();
+                        //toastMsg = "更新项目库数据成功";
+                        //mHandler.sendEmptyMessage(TOAST_MSG);
                     }
                 });
+
+                Intent intent = new Intent(getActivity(), HomeService.class);
+                Bundle bundle = new Bundle();
+                intent.putExtras(bundle);
+                getActivity().startService(intent);
 
 
                 break;
             case R.id.logout:
-                helper.loginOut();
+                LoginOutDialog dialog = new LoginOutDialog(getContext());
+                dialog.setOnClickListener(new LoginOutDialog.OnClickListener() {
+                    @Override
+                    public void rightBtnClick() {
+                        HomeDataHelper helper2 = new HomeDataHelper(getActivity());
+                        helper2.loginOut(new HomeDataHelper.InsertDataListener() {
+                            @Override
+                            public void onSuccess() {
+                                getActivity().startActivity(new Intent(  getActivity(),PhoneLoginActivity.class));
+                                getActivity().finish();
+                            }
+
+                            @Override
+                            public void onFail() {
+                                getActivity().startActivity(new Intent(  getActivity(),PhoneLoginActivity.class));
+                                getActivity().finish();
+                            }
+                        });
+                    }
+                });
+                dialog.show();
+
                 break;
             case R.id.check_update:
                 new Thread(new Runnable() {

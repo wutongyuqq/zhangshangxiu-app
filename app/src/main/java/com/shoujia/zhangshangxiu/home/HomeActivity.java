@@ -8,6 +8,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.shoujia.zhangshangxiu.R;
 import com.shoujia.zhangshangxiu.db.DBManager;
@@ -42,7 +43,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
 		new TabSupport(this);
 		navSupport = new NavSupport(this,1);
-		initData();
+		//initData();
 		final RelativeLayout root_view = findViewById(R.id.root_view);
 		final RelativeLayout rl_bottom = findViewById(R.id.rl_bottom);
 		final LinearLayout ll_top_title = findViewById(R.id.ll_top_title);
@@ -82,34 +83,6 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
 	}
 
-	//初始化数据
-	private void initData(){
-		DBManager db = DBManager.getInstanse(this);
-		List<CarInfo> carInfoList = db.queryListData(null);
-		if(carInfoList==null||carInfoList.size()==0){
-			HomeDataHelper homeDataHelper = new HomeDataHelper(this);
-			homeDataHelper.getCardList();
-		}
-		List<RepairInfo> repairInfos = db.queryRepairListData();
-		if(repairInfos==null||repairInfos.size()==0){
-			HomeDataHelper homeDataHelper = new HomeDataHelper(this);
-			homeDataHelper.getPersonRepairList();
-		}
-
-
-		List<FirstIconInfo> firstIconInfos = db.queryFirstIconListData();
-		if(firstIconInfos==null||firstIconInfos.size()==0){
-			HomeDataHelper homeDataHelper = new HomeDataHelper(this);
-			homeDataHelper.getFirstIconList();
-		}
-
-		List<SecondIconInfo> secondIconInfos = db.querySecondIconListData();
-		if(secondIconInfos==null||secondIconInfos.size()==0){
-			HomeDataHelper homeDataHelper = new HomeDataHelper(this);
-			homeDataHelper.getSecondIconList();
-		}
-
-	}
 
 
 	public void setTittle(String title){
@@ -125,6 +98,19 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+	}
+	long mLastPress = 0;
+
+	@Override
+	public void onBackPressed() {
+    	long curTimes = System.currentTimeMillis();
+    	if(curTimes-mLastPress>2000){
+			mLastPress = System.currentTimeMillis();
+			Toast.makeText(this,"再按一次退出应用",Toast.LENGTH_SHORT).show();
+		}else {
+			super.onBackPressed();
+		}
+
 	}
 
 	@Override

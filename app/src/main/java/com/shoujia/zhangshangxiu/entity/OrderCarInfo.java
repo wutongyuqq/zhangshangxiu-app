@@ -96,7 +96,7 @@ public class OrderCarInfo implements Serializable {
     }
 
     public String getZje() {
-        return zje;
+        return zje==null?"0":zje;
     }
 
     public void setZje(String zje) {
@@ -104,7 +104,7 @@ public class OrderCarInfo implements Serializable {
     }
 
     public String getWxfzj() {
-        return wxfzj;
+        return TextUtils.isEmpty(wxfzj)?"0":wxfzj;
     }
 
     public void setWxfzj(String wxfzj) {
@@ -112,7 +112,7 @@ public class OrderCarInfo implements Serializable {
     }
 
     public String getClfzj() {
-        return clfzj;
+        return TextUtils.isEmpty(clfzj)?"0":clfzj;
     }
 
     public void setClfzj(String clfzj) {
@@ -152,7 +152,7 @@ public class OrderCarInfo implements Serializable {
     }
 
     public String getCustom5() {
-        return custom5;
+        return custom5==null?"":custom5;
     }
 
     public void setCustom5(String custom5) {
@@ -181,4 +181,6 @@ public class OrderCarInfo implements Serializable {
                 ", custom5='" + custom5 + '\'' +
                 '}';
     }
+
+
 }

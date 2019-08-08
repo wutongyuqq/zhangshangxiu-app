@@ -36,6 +36,8 @@ import com.shoujia.zhangshangxiu.entity.ReciveInfo;
 import com.shoujia.zhangshangxiu.entity.RepairInfo;
 import com.shoujia.zhangshangxiu.entity.SecondIconInfo;
 import com.shoujia.zhangshangxiu.home.help.HomeDataHelper;
+import com.shoujia.zhangshangxiu.http.IGetDataListener;
+import com.shoujia.zhangshangxiu.order.ProjectOrderActivity;
 import com.shoujia.zhangshangxiu.project.ProjectActivity;
 import com.shoujia.zhangshangxiu.search.SearchListActivity;
 import com.shoujia.zhangshangxiu.util.Constance;
@@ -62,11 +64,14 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
     private EditText search_name;
     ListView mListView;
     PopupWindow mPopupWindow;
-
+    boolean isOtherPage;
+    CommonTipDialog mTipDialog;
     private HomeCarInfoAdapter homeCarInfoAdapter;
 
     private List<CarInfo> carInfoList;
-
+    private List<CarInfo> showCarInfoList;
+    HomeDataHelper mHomeDataHelper;
+    private boolean isCpClick;
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = View.inflate(getActivity(), R.layout.fragment_home_zsx, null);
@@ -110,7 +115,7 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
         jieche_btn.setOnClickListener(this);
         tv_guanzhu.setOnClickListener(this);
         et_province_cp.addTextChangedListener(new MyTextWatcher());
-        et_province_cp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+       /* et_province_cp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if(b) {
@@ -118,85 +123,141 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
                         et_province_cp.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                mPopupWindow.showAsDropDown(et_province_cp);
+                                try {
+                                    mPopupWindow.showAsDropDown(et_province_cp);
+                                }catch(Exception e){
+                                    e.printStackTrace();
+                                }
                             }
                         },150);
 
                     }
                 }
             }
-        });
+        });*/
         yjcsj.setOnClickListener(this);
     }
 
-    //初始化数据
-    private void initData(){
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        sp.putString(Constance.YUWANGONG,"");
+        sp.putString(Constance.GONGLISHU,"");
+        sp.putString(Constance.CURRENTCP,"");
+        sp.putString(Constance.CUSTOMER_ID,"");
+        sp.putString(Constance.CURRENTCZ,"");
+        sp.putString(Constance.JIECHEDATE,"");
+        sp.putString(Constance.BEIZHU,"");
+        sp.putString(Constance.CHEJIAHAO,"");
+    }
+
+    private void getPersonRepairList(){
+
+        getHomeHelper().getPersonRepairList(new HomeDataHelper.InsertDataListener() {
+            @Override
+            public void onSuccess() {
+                getFirstIconList();
+            }
+
+            @Override
+            public void onFail() {
+                getFirstIconList();
+            }
+        });
+    }
+
+    private void getSecondInconList(){
         DBManager db = DBManager.getInstanse(getActivity());
-        carInfoList = db.queryListData(null);
-        if(carInfoList==null||carInfoList.size()==0){
-            HomeDataHelper homeDataHelper = new HomeDataHelper(getActivity());
-            homeDataHelper.getCardList();
-        }else{
-            mHandler.sendEmptyMessage(2);
-        }
-        List<RepairInfo> repairInfos = db.queryRepairListData();
-        if(repairInfos==null||repairInfos.size()==0){
-            HomeDataHelper homeDataHelper = new HomeDataHelper(getActivity());
-            homeDataHelper.getPersonRepairList();
-        }else{
-            mHandler.sendEmptyMessage(3);
-        }
-
-
-        List<FirstIconInfo> firstIconInfos = db.queryFirstIconListData();
-        if(firstIconInfos==null||firstIconInfos.size()==0){
-            HomeDataHelper homeDataHelper = new HomeDataHelper(getActivity());
-            homeDataHelper.getFirstIconList();
-        }else{
-            mHandler.sendEmptyMessage(4);
-        }
-
         List<SecondIconInfo> secondIconInfos = db.querySecondIconListData();
-        if(firstIconInfos==null||firstIconInfos.size()==0){
-            HomeDataHelper homeDataHelper = new HomeDataHelper(getActivity());
-            homeDataHelper.getSecondIconList();
+        if(secondIconInfos==null||secondIconInfos.size()==0){
+
+            getHomeHelper().getSecondIconHomeList(new IGetDataListener() {
+                        @Override
+                        public void onSuccess(String json) {
+                            //dismissDialog();
+                        }
+
+                        @Override
+                        public void onFail() {
+                            //dismissDialog();
+                        }
+                    });
+
         }else{
             mHandler.sendEmptyMessage(5);
         }
 
-       // SNandTFAuth auth = new SNandTFAuth(getContext(),"5ZUB5BED6YWJ5B6");
     }
+
+    private void getFirstIconList(){
+        DBManager db = DBManager.getInstanse(getActivity());
+        List<FirstIconInfo> firstIconInfos = db.queryFirstIconListData();
+        if(firstIconInfos==null||firstIconInfos.size()==0){
+
+            getHomeHelper().getFirstIconList(new HomeDataHelper.InsertDataListener() {
+                   @Override
+                   public void onSuccess() {
+                       getSecondInconList();
+                   }
+
+                   @Override
+                   public void onFail() {
+                       getSecondInconList();
+                   }
+               });
+        }else{
+            mHandler.sendEmptyMessage(4);
+        }
+
+    }
+    //初始化数据
+    private void initData(){
+
+                    Intent intent = new Intent(getActivity(), HomeService.class);
+                    Bundle bundle = new Bundle();
+                    intent.putExtras(bundle);
+                    getActivity().startService(intent);
+
+       // mHandler.sendEmptyMessageDelayed(101,10000);
+    }
+
+
+    private HomeDataHelper getHomeHelper(){
+            if(mHomeDataHelper==null){
+                mHomeDataHelper = new HomeDataHelper(getActivity());
+            }
+            return mHomeDataHelper;
+     }
 
     @Override
     public void updateUIThread(Message msg) {
         int msgInt = msg.what;
-        if(msgInt==2){
-
-        }else if(msgInt==3){
-
-        }else if(msgInt==14){
+         if(msgInt==14){
+             dismissDialog();
             final ReciveInfo info = (ReciveInfo) msg.obj;
-            final CommonTipDialog dialog = new CommonTipDialog(getContext(), "该车辆已进场", "进入该车", "返回接车");
-            dialog.show();
-            dialog.setOnClickListener(new CommonTipDialog.OnClickListener() {
+             mTipDialog = new CommonTipDialog(getContext(), "该车辆已进场", "进入该车", "返回接车");
+             mTipDialog.show();
+             mTipDialog.setOnClickListener(new CommonTipDialog.OnClickListener() {
                 @Override
                 public void leftBtnClick() {
+                    mTipDialog.dismiss();
                     sp.putString(Constance.JSD_ID,info.getJsd_id());
                     sp.putString(Constance.CUSTOMER_ID,info.getCustomer_id());
-                    getActivity().startActivity(new Intent(getActivity(),ProjectActivity.class));
+                    getActivity().startActivity(new Intent(getActivity(),ProjectOrderActivity.class));
                 }
 
                 @Override
                 public void rightBtnClick() {
-                    dialog.dismiss();
+                    mTipDialog.dismiss();
                 }
             });
             if(info!=null){
-                dialog.setContent("接待人员："+info.getJcr(),"进厂时间："+info.getJc_date());
+                mTipDialog.setContent("接待人员："+info.getJcr(),"进厂时间："+info.getJc_date());
             }
-
-
-        }
+        }else if(msgInt==15){
+             isCpClick = false;
+         }
     }
 
     private View findViewById(int id){
@@ -235,6 +296,7 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
                 more_info.setVisibility(View.VISIBLE);
                 break;
             case R.id.take_photo_car:
+                isOtherPage = true;
                 CoreSetup coreSetup = new CoreSetup();
                 Intent cameraIntent = new Intent(getActivity(), PlateidCameraActivity.class);
                 coreSetup.takePicMode = false;
@@ -242,6 +304,7 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
                 startActivityForResult(cameraIntent, 1);
                 break;
             case R.id.jieche_btn:
+                showDialog(getContext());
                 startJieche();
                 break;
             case R.id.tv_guanzhu:
@@ -275,7 +338,7 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
                     yjcsj.setText(pickTime);
                 }
             }
-        },"2018-01-01 00:00","2022-12-31 00:00");
+        },"2007-01-01 00:00","2025-12-31 23:59");
         customDatePicker.show();
     }
 
@@ -315,7 +378,15 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
         bean.setMemo(memo);
         bean.setKeys_no(keys_no);
 
-        if(mcSimple.length()!=6){
+        sp.putString(Constance.GONGLISHU,gls);
+        sp.putString(Constance.BEIZHU,memo);
+        sp.putString(Constance.CHEJIAHAO,cjhm);
+        sp.putString(Constance.CHEXING,cx);
+        sp.putString(Constance.YUWANGONG,ns_date);
+        sp.putString(Constance.GUZHNAGMIAOSHU,gzms);
+        sp.putString(Constance.JIESHAOREN,linkman);
+
+        if(mcSimple.length()<5){
             toastMsg="车牌号输入错误";
             mHandler.sendEmptyMessage(TOAST_MSG);
             return;
@@ -342,10 +413,10 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
         db.insertOrUpdateCarInfo(bean);*/
         DBManager db = DBManager.getInstanse(getContext());
         List<CarInfo> carInfos = db.queryListData(bean.getMc(),false);
-        HomeDataHelper dataHelper = new HomeDataHelper(getActivity());
+
         if(carInfos==null||carInfos.size()==0){
             //新车
-            dataHelper.uploadNewCar(bean, new HomeDataHelper.GetDataListener() {
+            getHomeHelper().uploadNewCar(bean, new HomeDataHelper.GetDataListener() {
                 @Override
                 public void getData(int resType, String jsd_id, String jcr, String jc_date,String customer_id) {
                     if(resType==HomeDataHelper.GetDataListener.TYPE_UN_IN){
@@ -366,7 +437,7 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
             bean.setCustomer_id(oldCarBean.getCustomer_id());
             bean.setPhone(oldCarBean.getPhone());
             bean.setVipnumber(oldCarBean.getVipnumber());
-            dataHelper.uploadOldCar(bean, new HomeDataHelper.GetDataListener() {
+            getHomeHelper().uploadOldCar(bean, new HomeDataHelper.GetDataListener() {
                 @Override
                 public void getData(int resType, String jsd_id, String jcr, String jc_date,String customer_id) {
                     if(resType==HomeDataHelper.GetDataListener.TYPE_UN_IN){
@@ -388,22 +459,33 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
 
 
     private void initPopWindow(){
-
+        try {
         // 用于PopupWindow的View
         View contentView=LayoutInflater.from(getContext()).inflate(R.layout.popwindow_home, null, false);
          mListView = contentView.findViewById(R.id.listview);
-
-        homeCarInfoAdapter = new HomeCarInfoAdapter(getContext(),carInfoList);//新建并配置ArrayAapeter
+            if(showCarInfoList==null){
+                showCarInfoList = new ArrayList<>();
+            }
+        if(homeCarInfoAdapter==null) {
+            homeCarInfoAdapter = new HomeCarInfoAdapter(getContext(), showCarInfoList);//新建并配置ArrayAapeter
+        }
         mListView.setAdapter(homeCarInfoAdapter);
+        if(carInfoList==null){
+            carInfoList = new ArrayList<>();
+        }
+        showCarInfoList.clear();
+        showCarInfoList.addAll(carInfoList);
+        homeCarInfoAdapter.notifyDataSetChanged();
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 mPopupWindow.dismiss();
+                isCpClick = true;
                 CarInfo info = carInfoList.get(position);
                 setFormData(info);
+                mHandler.sendEmptyMessageDelayed(15,1000);
             }
         });
-
         // 创建PopupWindow对象，其中：
         // 第一个参数是用于PopupWindow中的View，第二个参数是PopupWindow的宽度，
         // 第三个参数是PopupWindow的高度，第四个参数指定PopupWindow能否获得焦点
@@ -421,6 +503,9 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
         // 第一个参数是PopupWindow的父View，第二个参数是PopupWindow相对父View的位置，
         // 第三和第四个参数分别是PopupWindow相对父View的x、y偏移
         // window.showAtLocation(parent, gravity, x, y);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private class MyTextWatcher implements TextWatcher {
@@ -437,29 +522,40 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
 
         @Override
         public void afterTextChanged(Editable editable) {
-            if(mPopupWindow!=null && et_province_cp.getText()!=null){
-                String proSimple = tv_cp_area.getText().toString().trim();
-                String proStr = proSimple+"%"+editable.toString();
-                DBManager db = DBManager.getInstanse(getActivity());
-                carInfoList = db.queryListData(proStr);
-                homeCarInfoAdapter.setListData(carInfoList);
-                homeCarInfoAdapter.notifyDataSetChanged();
-                if(carInfoList!=null&&carInfoList.size()>0 && !TextUtils.isEmpty(proSimple)&&!TextUtils.isEmpty(editable.toString())) {
-                    int[] location = new  int[2] ;
-                    et_province_cp.getLocationOnScreen(location); //获取在当前窗口内的绝对坐标,当前activity显示的大小
-                    int yOff = location[1] + Util.dp2px(getContext(),50);
-                    mPopupWindow.dismiss();
-                    if(getActivity()!=null) {
-                        mPopupWindow.showAsDropDown(et_province_cp);
+            if(isOtherPage){
+                isOtherPage=!isOtherPage;
+                return;
+            }
+            try {
+                if (mPopupWindow != null && et_province_cp.getText() != null) {
+                    String proSimple = tv_cp_area.getText().toString().trim();
+                    String proStr = proSimple + "%" + editable.toString();
+                    DBManager db = DBManager.getInstanse(getActivity());
+                    carInfoList = db.queryListData(proStr);
+                    if(carInfoList==null||carInfoList.size()==0||isCpClick){
+                        return;
+                    }
+                    showCarInfoList.clear();
+                    showCarInfoList.addAll(carInfoList);
+                    homeCarInfoAdapter.notifyDataSetChanged();
+                    if (carInfoList != null && carInfoList.size() > 0 && !TextUtils.isEmpty(proSimple) && !TextUtils.isEmpty(editable.toString())) {
+                        int[] location = new int[2];
+                        et_province_cp.getLocationOnScreen(location); //获取在当前窗口内的绝对坐标,当前activity显示的大小
+                        int yOff = location[1] + Util.dp2px(getContext(), 50);
+                        mPopupWindow.dismiss();
+                        if (getActivity() != null && et_province_cp!=null) {
+                            mPopupWindow.showAsDropDown(et_province_cp);
+                        }
                     }
                 }
+            }catch (Exception e){
+                    e.printStackTrace();
             }
         }
     }
 
     private void guanzhu(){
-        HomeDataHelper homeDataHelper = new HomeDataHelper(getActivity());
-        homeDataHelper.getGuzhuInfo();
+        getHomeHelper().getGuzhuInfo();
     }
 
     @Override
@@ -533,5 +629,9 @@ public class HomeZsxFragment extends BaseFragment implements View.OnClickListene
 
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        isOtherPage = true;
+    }
 }

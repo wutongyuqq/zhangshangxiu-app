@@ -22,7 +22,6 @@
         android:gravity="center"
         android:text="增加临时项目" />
     <LinearLayout
-        android:id="@+id/content_line_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

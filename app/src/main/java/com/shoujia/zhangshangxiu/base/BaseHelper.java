@@ -1,6 +1,7 @@
 package com.shoujia.zhangshangxiu.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
@@ -9,12 +10,17 @@ import java.lang.ref.WeakReference;
 
 public class BaseHelper {
 
-    private Activity mActivity;
+    private Context mActivity;
     protected final int TOAST_MSG = 1;
     protected String toastMsg = "";
     protected MyHandler mHandler =null;
     public BaseHelper(Activity activity){
         this.mActivity = activity;
+        mHandler = new MyHandler(this);
+    }
+
+    public BaseHelper(Context context){
+        this.mActivity = context;
         mHandler = new MyHandler(this);
     }
 

@@ -68,7 +68,7 @@ public class ProjectPaigongActivity extends BaseActivity implements View.OnClick
 
     private void initView() {
         sp = new SharePreferenceManager(this);
-        new NavSupport(this, 1);
+        new NavSupport(this, 13);
         new InfoSupport(this);
 
         listview = findViewById(R.id.listview);

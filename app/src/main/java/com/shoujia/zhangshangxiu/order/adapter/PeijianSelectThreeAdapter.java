@@ -109,8 +109,6 @@ public class PeijianSelectThreeAdapter extends BaseAdapter {
 
     class Hodler {
         EditText name;
-        EditText jinjia;
-        EditText xiaojia;
         EditText shuliang;
     }
 }

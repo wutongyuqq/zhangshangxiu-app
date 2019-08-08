@@ -70,7 +70,7 @@ public class DialogPaigongPersonAdapter extends BaseAdapter {
             hodler = (Hodler) convertView.getTag();
         }
         RepairInfo bean = listData.get(position);
-        hodler.name.setText(bean.getXlz());
+        hodler.name.setText(bean.getXlg());
         if(listData.get(position).isSelected()){
             hodler.iv_select.setImageResource(R.drawable.right_now);
         }else{

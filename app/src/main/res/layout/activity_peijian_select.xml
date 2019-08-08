@@ -36,7 +36,7 @@
                     android:gravity="center"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="项目"
+                    android:text="库存配件"
                     android:textColor="#ffffff" />
 
                 <TextView
@@ -169,6 +169,7 @@
                     android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/make_sure_two"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -229,6 +230,7 @@
                     android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/make_sure_three"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

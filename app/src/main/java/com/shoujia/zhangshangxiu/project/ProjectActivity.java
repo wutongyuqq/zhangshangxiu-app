@@ -2,6 +2,8 @@ package com.shoujia.zhangshangxiu.project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -17,9 +19,11 @@ import com.shoujia.zhangshangxiu.db.DBManager;
 import com.shoujia.zhangshangxiu.dialog.ProjectCancleDialog;
 import com.shoujia.zhangshangxiu.dialog.ProjectEditDialog;
 import com.shoujia.zhangshangxiu.entity.CarInfo;
+import com.shoujia.zhangshangxiu.entity.OrderCarInfo;
 import com.shoujia.zhangshangxiu.history.HistoryActivity;
 import com.shoujia.zhangshangxiu.http.HttpClient;
 import com.shoujia.zhangshangxiu.http.IGetDataListener;
+import com.shoujia.zhangshangxiu.order.ProjectOrderActivity;
 import com.shoujia.zhangshangxiu.project.help.ProjectDataHelper;
 import com.shoujia.zhangshangxiu.support.InfoSupport;
 import com.shoujia.zhangshangxiu.support.NavSupport;
@@ -27,6 +31,7 @@ import com.shoujia.zhangshangxiu.support.TabSupport;
 import com.shoujia.zhangshangxiu.util.Constance;
 import com.shoujia.zhangshangxiu.util.SharePreferenceManager;
 import com.shoujia.zhangshangxiu.util.Util;
+import com.shoujia.zhangshangxiu.view.CustomDatePicker;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,10 +44,13 @@ import java.util.Map;
 public class ProjectActivity extends BaseActivity implements View.OnClickListener{
 	private final String TAG = "HomeActivity";
   private NavSupport navSupport;
-  private LinearLayout car_history,cancle_reciver,project_select;
+  private LinearLayout car_history,cancle_reciver,project_select,order_total_num;
   private RelativeLayout rl_gls,rl_cjh,rl_cx,rl_ywg,rl_gzms,rl_jsr,rl_bz;
   private TextView tv_gls,tv_cjh,tv_cx,tv_ywg,tv_gzms,tv_jsr,tv_bz;
     private SharePreferenceManager sp;
+    InfoSupport mInfoSupport;
+    private OrderCarInfo mOrderCarInfo;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +73,7 @@ public class ProjectActivity extends BaseActivity implements View.OnClickListene
         tv_gzms = findViewById(R.id.tv_gzms);
         tv_jsr = findViewById(R.id.tv_jsr);
         tv_bz = findViewById(R.id.tv_bz);
+        order_total_num = findViewById(R.id.order_total_num);
         rl_gls.setOnClickListener(this);
         rl_cjh.setOnClickListener(this);
         rl_cx.setOnClickListener(this);
@@ -73,17 +82,84 @@ public class ProjectActivity extends BaseActivity implements View.OnClickListene
         rl_jsr.setOnClickListener(this);
         rl_bz.setOnClickListener(this);
         sp = new SharePreferenceManager(this);
-		navSupport = new NavSupport(this,1);
+		navSupport = new NavSupport(this,16);
 		car_history.setOnClickListener(this);
         cancle_reciver.setOnClickListener(this);
         project_select.setOnClickListener(this);
-        new InfoSupport(this);
+        order_total_num.setOnClickListener(this);
+         mInfoSupport = new InfoSupport(this);
+
+        tv_gls.setText(sp.getString(Constance.GONGLISHU));
+        tv_bz.setText(sp.getString(Constance.BEIZHU));
+        tv_cjh.setText(sp.getString(Constance.CHEJIAHAO));
+        tv_cx.setText(sp.getString(Constance.CHEXING));
+        String ywg_date = sp.getString(Constance.YUWANGONG);
+        if(ywg_date.length()>=10){
+            ywg_date = ywg_date.substring(0,10);
+        }
+        tv_ywg.setText(ywg_date);
+
+        tv_jsr.setText(sp.getString(Constance.JIESHAOREN));
+
+
 		initData();
 
 	}
 
-	//初始化数据
+    @Override
+    protected void updateUIThread(int msgInt) {
+        super.updateUIThread(msgInt);
+        if(msgInt==109){
+            if(mOrderCarInfo!=null){
+                tv_gls.setText(mOrderCarInfo.getJclc());
+                tv_bz.setText(mOrderCarInfo.getMemo());
+                tv_cjh.setText(mOrderCarInfo.getCjhm());
+                tv_cx.setText(mOrderCarInfo.getCx());
+                String ywg_date = mOrderCarInfo.getYwg_date();
+                if(ywg_date.length()>=10){
+                    ywg_date = ywg_date.substring(0,10);
+                }
+                tv_ywg.setText(ywg_date);
+
+                tv_jsr.setText(mOrderCarInfo.getCustom5());
+                mInfoSupport.setCz(mOrderCarInfo.getCz());
+            }
+        }
+    }
+
+    //初始化数据
 	private void initData(){
+            Map<String, String> dataMap = new HashMap<>();
+            dataMap.put("db", sp.getString(Constance.Data_Source_name));
+            dataMap.put("function", "sp_fun_down_repair_list_main");
+            dataMap.put("jsd_id", sp.getString(Constance.JSD_ID));
+            HttpClient client = new HttpClient();
+            client.post(Util.getUrl(), dataMap, new IGetDataListener() {
+                @Override
+                public void onSuccess(String json) {
+                    Log.d("onSuccess--json", json);
+                    System.out.println("11111");
+                    Map<String, Object> resMap = (Map<String, Object>) JSON.parse(json);
+                    String state = (String) resMap.get("state");
+                    if ("ok".equals(state)) {
+                        JSONArray dataArray = (JSONArray) resMap.get("data");
+                        List<OrderCarInfo> projectBeans = JSONArray.parseArray(dataArray.toJSONString(), OrderCarInfo.class);
+                        if(projectBeans!=null&&projectBeans.size()>0){
+                            mOrderCarInfo = projectBeans.get(0);
+                            //getGuzhang();
+                        }
+                        mHandler.sendEmptyMessage(109);
+                    } else {
+
+                    }
+                }
+
+                @Override
+                public void onFail() {
+                    toastMsg = "网络连接异常";
+                    mHandler.sendEmptyMessage(TOAST_MSG);
+                }
+            });
 
 
 	}
@@ -170,10 +246,12 @@ public class ProjectActivity extends BaseActivity implements View.OnClickListene
                 showTipDialog("cx","车型",tv_cx);
                 break;
             case R.id.rl_ywg:
-                showTipDialog("ywg_date","已完工日期",tv_ywg);
+                showProDialog(tv_ywg);
+                //showTipDialog("ywg_date","已完工日期",tv_ywg);
                 break;
             case R.id.rl_gzms:
-                showTipDialog("jclc","故障描述",tv_gzms);
+                //showTipDialog("jclc","故障描述",tv_gzms);
+                startActivity(new Intent(ProjectActivity.this,GuzhangListActivity.class));
                 break;
             case R.id.rl_jsr:
                 showTipDialog("custom5","接收人",tv_jsr);
@@ -181,13 +259,29 @@ public class ProjectActivity extends BaseActivity implements View.OnClickListene
             case R.id.rl_bz:
                 showTipDialog("memo","备注",tv_bz);
                 break;
+            case R.id.order_total_num:
+                startActivity(new Intent(ProjectActivity.this,ProjectOrderActivity.class));
+                break;
             default:
 
                 break;
 		}
     }
 
-
+    private void showProDialog(final TextView tv) {
+        CustomDatePicker customDatePicker = new CustomDatePicker(ProjectActivity.this, new CustomDatePicker.ResultHandler() {
+            @Override
+            public void handle(String time) { // 回调接口，获得选中的时间
+                Log.d("yyyyy", time);
+                if(!TextUtils.isEmpty(time)&&time.length()>=10){
+                    String pickTime = time.substring(0,10);
+                    tv.setText(pickTime);
+                    getCardList("ywg_date",pickTime);
+                }
+            }
+        },"2007-01-01 00:00","2025-12-31 00:00");
+        customDatePicker.show();
+    }
 
 	@Override
 	public void onPause() {
@@ -198,5 +292,8 @@ public class ProjectActivity extends BaseActivity implements View.OnClickListene
 	@Override
 	public void onResume() {
 		super.onResume();
+		if(!TextUtils.isEmpty(sp.getString(Constance.GUZHNAGMIAOSHU))){
+            tv_gzms.setText(sp.getString(Constance.GUZHNAGMIAOSHU));
+        }
 	}
 }

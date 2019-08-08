@@ -92,17 +92,17 @@ public class FactoryManagerAdapter extends BaseAdapter {
         return convertView;
     }
 
+    class Hodler {
+        TextView tv_cp_name;
+        TextView tv_jsd_id;
+        TextView car_num;
+        TextView project_statu;
+        TextView car_type;
+        TextView wxgz_type;
+        TextView lgry_type;
+        TextView zpry_type;
+        TextView enter_date;
+    }
 }
 
-class Hodler {
-    TextView tv_cp_name;
-    TextView tv_jsd_id;
-    TextView car_num;
-    TextView project_statu;
-    TextView car_type;
-    TextView wxgz_type;
-    TextView lgry_type;
-    TextView zpry_type;
-    TextView enter_date;
-}
 

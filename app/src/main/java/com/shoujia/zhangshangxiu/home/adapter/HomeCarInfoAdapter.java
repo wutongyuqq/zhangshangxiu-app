@@ -73,10 +73,10 @@ public class HomeCarInfoAdapter extends BaseAdapter {
         
         return convertView;
     }
+    class Hodler {
+        TextView tv_cp_name;
 
+    }
 }
-class Hodler {
-    TextView tv_cp_name;
 
-}
 

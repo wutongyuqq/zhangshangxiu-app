@@ -71,7 +71,7 @@ public class PeijianOrderProAdapter extends BaseAdapter {
         if (convertView == null) {
             hodler = new Hodler();
             convertView = LayoutInflater.from(context).inflate(
-                    R.layout.order_peijian_item, null);
+                    R.layout.order_pro_item, null);
             hodler.tv_num = convertView.findViewById(R.id.tv_num);
             hodler.pro_name = convertView.findViewById(R.id.pro_name);
             hodler.pro_type = convertView.findViewById(R.id.pro_type);
@@ -79,20 +79,20 @@ public class PeijianOrderProAdapter extends BaseAdapter {
             hodler.tv_zk = convertView.findViewById(R.id.tv_zk);
             hodler.tv_edit = convertView.findViewById(R.id.tv_edit);
             hodler.tv_delete = convertView.findViewById(R.id.tv_delete);
-            hodler.tv_hj = convertView.findViewById(R.id.tv_hj);
+            //hodler.tv_hj = convertView.findViewById(R.id.tv_hj);
 
             convertView.setTag(hodler);
         }else{
             hodler = (Hodler) convertView.getTag();
         }
         PeijianBean bean = listData.get(position);
-        hodler.tv_num.setText(bean.getXh());
+        hodler.tv_num.setText((position+1)+"");
         hodler.pro_name.setText(bean.getPjmc());
         hodler.pro_type.setText(bean.getPjbm());
         hodler.tv_xlf.setText(bean.getSl());
         hodler.tv_zk.setText(bean.getSsj());
         float totalMoney = Float.parseFloat(bean.getSl()) * Float.parseFloat(bean.getSsj());
-        hodler.tv_hj.setText( (float)(Math.round(totalMoney*100))/100+"");
+        //hodler.tv_hj.setText( (float)(Math.round(totalMoney*100))/100+"");
         hodler.tv_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,7 +125,7 @@ public class PeijianOrderProAdapter extends BaseAdapter {
         TextView pro_type;
         TextView tv_xlf;
         TextView tv_zk;
-        TextView tv_hj;
+       // TextView tv_hj;
         ImageView tv_edit;
         ImageView tv_delete;
 

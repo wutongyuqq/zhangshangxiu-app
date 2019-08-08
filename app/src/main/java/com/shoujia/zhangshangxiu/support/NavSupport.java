@@ -7,19 +7,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shoujia.zhangshangxiu.R;
+import com.shoujia.zhangshangxiu.util.Constance;
+import com.shoujia.zhangshangxiu.util.SharePreferenceManager;
 
 public class NavSupport  implements View.OnClickListener{
 
     private ImageView right_btn,left_btn;
     private Activity mActivity;
     private TextView tv_title;
+    private SharePreferenceManager sp;
     private int mFromType;
     public NavSupport(Activity activity, int fromType){
         this.mActivity = activity;
         this.mFromType = fromType;
         initView();
+
     }
+
+
+
     private void initView(){
+        sp = new SharePreferenceManager(mActivity);
         right_btn = (ImageView) findViewById(R.id.right_btn);
         left_btn = (ImageView) findViewById(R.id.left_btn);
         tv_title = (TextView) findViewById(R.id.title);
@@ -40,6 +48,33 @@ public class NavSupport  implements View.OnClickListener{
             setLeftBtnVisible(true);
         }else if(mFromType==7){
             setTittle("已完成工单");
+            setLeftBtnVisible(true);
+        }else if(mFromType==8){
+            setTittle("我的绩效");
+            setLeftBtnVisible(true);
+        }else if(mFromType==11){
+            setTittle("工单("+sp.getString(Constance.JSD_ID)+")");
+            setLeftBtnVisible(true);
+        }else if(mFromType==12){
+            setTittle("结算");
+            setLeftBtnVisible(true);
+        }else if(mFromType==13){
+            setTittle("派工");
+            setLeftBtnVisible(true);
+        }else if(mFromType==14){
+            setTittle("收银");
+            setLeftBtnVisible(true);
+        }else if(mFromType==15){
+            setTittle("配件");
+            setLeftBtnVisible(true);
+        }else if(mFromType==16){
+            setTittle("项目选择");
+            setLeftBtnVisible(false);
+        }else if(mFromType==17){
+            setTittle("领工");
+            setLeftBtnVisible(false);
+        }else if(mFromType==18){
+            setTittle("工单查询");
             setLeftBtnVisible(true);
         }
     }

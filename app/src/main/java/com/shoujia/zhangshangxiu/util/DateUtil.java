@@ -44,6 +44,12 @@ public class DateUtil {
        return df.format(new Date());// new Date()为获取当前系统时间
     }
 
+
+    public static String getCurrentDate(){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        return df.format(new Date());// new Date()为获取当前系统时间
+    }
+
     // date类型转换为long类型
     // date要转换的date类型的时间
     public static long dateToLong(Date date) {

@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -28,31 +29,39 @@ import java.util.Map;
 public class PhoneLoginActivity extends BaseActivity implements OnClickListener {
 
     private Button login_btn;
-    private EditText factory_name, password, username;
+    private LinearLayout top_btn;
+    private EditText factory_name, password, username,server_ip;
     SharePreferenceManager sp;
+    int clickNum = 0;
+    String  url = "http://121.43.148.193:5555/restful/pro";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.login_main);
         login_btn = findViewById(R.id.login_btn);
+        top_btn = findViewById(R.id.top_btn);
         factory_name = findViewById(R.id.factory_name);
         password = findViewById(R.id.password);
         username = findViewById(R.id.username);
+        server_ip = findViewById(R.id.server_ip);
 
         login_btn.setOnClickListener(this);
+        top_btn.setOnClickListener(this);
         sp = new SharePreferenceManager(this);
         username.setText(sp.getString(Constance.USERNAME));
         password.setText(sp.getString(Constance.PASSWORD));
         factory_name.setText(sp.getString(Constance.FACTORYNAME));
         if(sp.getBoolean(Constance.HASLOGIN)){
             startActivity(new Intent(PhoneLoginActivity.this, HomeActivity.class));
+            finish();
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        clickNum=0;
     }
 
     @Override
@@ -71,17 +80,30 @@ public class PhoneLoginActivity extends BaseActivity implements OnClickListener 
                     Toast.makeText(this, "请输入密码", Toast.LENGTH_LONG).show();
                     return;
                 }
+                showDialog(this);
                 String factoryName = factory_name.getText().toString().trim();
                 String userName = username.getText().toString().trim();
                 String pwd = password.getText().toString().trim();
                 checkLoginDate(factoryName, userName, pwd);
 
                 break;
+            case R.id.top_btn:
+                clickNum++;
+                if(clickNum>10){
+                    server_ip.setVisibility(View.VISIBLE);
+                }
+                break;
             default:
                 break;
         }
+    }
 
-
+    @Override
+    protected void updateUIThread(int msgInt) {
+        super.updateUIThread(msgInt);
+        if(msgInt==200){
+            server_ip.setText(sp.getString(Constance.server_ip_port));
+        }
     }
 
     private void checkLoginDate(final String factoryName, final String userName, final String pwd) {
@@ -91,7 +113,7 @@ public class PhoneLoginActivity extends BaseActivity implements OnClickListener 
         dataMap.put("data_source", factoryName);
         dataMap.put("operater_code", userName);
         HttpClient client = new HttpClient();
-        client.post(Util.getUrl(), dataMap, new IGetDataListener() {
+        client.post(url, dataMap, new IGetDataListener() {
             @Override
             public void onSuccess(String json) {
                 Map<String, Object> resMap = JSONObject.parseObject(json);
@@ -102,10 +124,15 @@ public class PhoneLoginActivity extends BaseActivity implements OnClickListener 
                         long curDateLong = System.currentTimeMillis();
                         if (endDateLong > curDateLong) {
                             sp.putString(Constance.Data_Source_name,(String) resMap.get("Data_Source_name"));
-                            sp.putString(Constance.server_ip_port,(String) resMap.get("server_ip_port"));
-
+                            if(server_ip.getVisibility()==View.VISIBLE && server_ip.getText()!=null&&!TextUtils.isEmpty( server_ip.getText().toString().trim())){
+                                sp.putString(Constance.server_ip_port,server_ip.getText().toString().trim());
+                                mHandler.sendEmptyMessage(200);
+                            }else {
+                                sp.putString(Constance.server_ip_port, (String) resMap.get("server_ip_port"));
+                            }
                             login(factoryName,userName, pwd);
                         } else {
+                            dismissDialog();
                             toastMsg = "服务有效期限已经过了，请联系首佳软件进行续费。 过期时间：" + ((endDateStr.length()) > 10 ? endDateStr.substring(0, 10) : endDateStr);
                             mHandler.sendEmptyMessage(TOAST_MSG);
                         }
@@ -117,7 +144,7 @@ public class PhoneLoginActivity extends BaseActivity implements OnClickListener 
 
             @Override
             public void onFail() {
-
+                dismissDialog();
             }
         });
     }
@@ -133,21 +160,26 @@ public class PhoneLoginActivity extends BaseActivity implements OnClickListener 
         client.post(Util.getUrl(), dataMap, new IGetDataListener() {
             @Override
             public void onSuccess(String json) {
+                dismissDialog();
                 Map<String, Object> resMap = (Map<String, Object>) JSON.parse(json);
                 if (resMap.get("state") != null && "true".equals(resMap.get("state"))) {
                     String state = (String) resMap.get("state");
                     String comp_code = (String) resMap.get("comp_code");
+                    String chinese_name = (String) resMap.get("chinese_name");
                     if (state.equals("true")) {
                        sp.putString(Constance.PASSWORD,password);
                        sp.putString(Constance.USERNAME,userName);
                        sp.putString(Constance.FACTORYNAME,factoryName);
                        sp.putString(Constance.COMP_CODE,comp_code);
+                       sp.putString(Constance.CHINESE_NAME,chinese_name);
                        sp.putBoolean(Constance.HASLOGIN,true);
                         startActivity(new Intent(PhoneLoginActivity.this, HomeActivity.class));
                     } else {
+
                         Toast.makeText(PhoneLoginActivity.this, "服务异常", Toast.LENGTH_LONG).show();
                     }
                 } else {
+
                     toastMsg = "服务异常" + (resMap.get("msg") != null ? (":" + resMap.get("msg")) : "");
                     mHandler.sendEmptyMessage(TOAST_MSG);
                 }
@@ -155,6 +187,7 @@ public class PhoneLoginActivity extends BaseActivity implements OnClickListener 
 
             @Override
             public void onFail() {
+                dismissDialog();
                 toastMsg = "服务异常";
                 mHandler.sendEmptyMessage(TOAST_MSG);
             }

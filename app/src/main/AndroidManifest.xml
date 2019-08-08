@@ -86,6 +86,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
+
+        <activity android:name="com.shoujia.zhangshangxiu.project.GuzhangListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
+        </activity>
         <activity android:name="com.shoujia.zhangshangxiu.order.ProjectOrderActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
@@ -126,6 +132,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" >
         </activity>
+   <activity android:name="com.shoujia.zhangshangxiu.manager.activity.MangerLinggongActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
+        </activity>
+        <service android:name="com.shoujia.zhangshangxiu.home.HomeService"
+          android:label="@string/app_name"/>
+
 
     </application>
 

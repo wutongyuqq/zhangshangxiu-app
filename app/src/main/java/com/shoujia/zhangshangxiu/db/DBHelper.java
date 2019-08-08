@@ -21,11 +21,11 @@ public class DBHelper extends SQLiteOpenHelper {
     //配件数据
     public static final String PARTS_INFO_TABLE_NAME = "parts_info";
 
+    //车间管理
+    public static final String MANAGER_INFO_TABLE_NAME = "manager_info";
+
     // 数据库版本号
     public static final int DB_VERSION = 1;
-
-
-
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -40,11 +40,13 @@ public class DBHelper extends SQLiteOpenHelper {
         String createFirstIconSql = "drop table if exists "+ FIRST_ICON_TABLE_NAME;
         String createSecondIconSql = "drop table if exists "+ SECOND_ICON_TABLE_NAME;
         String createPartSql = "drop table if exists "+ PARTS_INFO_TABLE_NAME;
+        String managerSql = "drop table if exists "+ MANAGER_INFO_TABLE_NAME;
         db.execSQL(createSql);
         db.execSQL(createRepairSql);
         db.execSQL(createFirstIconSql);
         db.execSQL(createSecondIconSql);
         db.execSQL(createPartSql);
+        db.execSQL(managerSql);
         // 建表
         String sql = "create table " +
                 TABLE_NAME +
@@ -119,17 +121,35 @@ public class DBHelper extends SQLiteOpenHelper {
                 "pjjj varchar"
                 + ")";
 
+        // 建配件数据表
+        String sqlManagerInfo = "create table " +
+                MANAGER_INFO_TABLE_NAME +
+                "(id integer primary key autoincrement, " +
+                "assign varchar, " +
+                "cjhm varchar,"+
+                "jsd_id varchar,"+
+                "cp varchar,"+
+                "cx varchar,"+
+                "jc_date varchar,"+
+                "states varchar,"+
+                "wxgz varchar,"+
+                "xlg varchar,"+
+                "jcr varchar,"+
+                "ywg_date varchar"+
+                 ")";
+
 
         db.execSQL(sql);
         db.execSQL(sqlRepair);
         db.execSQL(sqlFirstIcon);
         db.execSQL(sqlSeconndIcon);
         db.execSQL(sqlPartsInfo);
+        db.execSQL(sqlManagerInfo);
     }
 
     // 当数据库版本更新执行该方法
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        onCreate(db);
     }
 }

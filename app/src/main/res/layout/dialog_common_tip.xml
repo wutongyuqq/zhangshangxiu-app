@@ -23,7 +23,6 @@
         android:visibility="gone"
         android:text="该车辆已进场" />
     <LinearLayout
-        android:id="@+id/content_line_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

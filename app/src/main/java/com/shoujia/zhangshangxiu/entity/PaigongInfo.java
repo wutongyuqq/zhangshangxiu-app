@@ -1,5 +1,7 @@
 package com.shoujia.zhangshangxiu.entity;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 public class PaigongInfo implements Serializable {
@@ -69,7 +71,7 @@ public class PaigongInfo implements Serializable {
     }
 
     public String getXh() {
-        return xh;
+        return TextUtils.isEmpty(xh)?"0":xh;
     }
 
     public void setXh(String xh) {

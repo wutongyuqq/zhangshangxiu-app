@@ -17,6 +17,10 @@ public class ManageInfo {
     private String jcr;
     private String xllb;
     private String jclc;
+    private String cz;
+    private String xlxm;
+    private boolean isChecked;
+    private String xh;
 
     public String getAssign() {
         return assign==null?"":assign;
@@ -120,5 +124,37 @@ public class ManageInfo {
 
     public void setJclc(String jclc) {
         this.jclc = jclc;
+    }
+
+    public String getCz() {
+        return cz;
+    }
+
+    public void setCz(String cz) {
+        this.cz = cz;
+    }
+
+    public String getXlxm() {
+        return xlxm;
+    }
+
+    public void setXlxm(String xlxm) {
+        this.xlxm = xlxm;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    public String getXh() {
+        return xh;
+    }
+
+    public void setXh(String xh) {
+        this.xh = xh;
     }
 }

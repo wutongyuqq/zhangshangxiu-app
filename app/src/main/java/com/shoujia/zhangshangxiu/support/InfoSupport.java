@@ -28,6 +28,13 @@ public class InfoSupport implements View.OnClickListener{
         person_head.setText(sp.getString(Constance.CURRENTCZ));
     }
 
+    public void setCz(String cz){
+        if(cz==null){
+            cz="";
+        }
+        person_head.setText(cz);
+    }
+
 
 
 

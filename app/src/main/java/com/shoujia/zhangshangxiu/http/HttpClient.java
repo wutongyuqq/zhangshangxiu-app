@@ -60,7 +60,6 @@ public class HttpClient {
             return;
         }
 
-
         if(dataMap==null){
             listener.onFail();
         }

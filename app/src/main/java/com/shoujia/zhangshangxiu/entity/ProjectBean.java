@@ -1,5 +1,7 @@
 package com.shoujia.zhangshangxiu.entity;
 
+import android.text.TextUtils;
+
 /**
  * Created by Administrator on 2017/2/27 0027.
  */
@@ -10,9 +12,10 @@ public class ProjectBean {
 	private String xlf;
 	private String xlxm;
 	private String zk;
+	private String cb;
 
 	public String getSsje() {
-		return ssje;
+		return TextUtils.isEmpty(ssje)?"0":ssje;
 	}
 
 	public void setSsje(String ssje) {
@@ -28,7 +31,7 @@ public class ProjectBean {
 	}
 
 	public String getXh() {
-		return xh;
+		return TextUtils.isEmpty(xh)?"0":xh;
 	}
 
 	public void setXh(String xh) {
@@ -36,7 +39,7 @@ public class ProjectBean {
 	}
 
 	public String getXlf() {
-		return xlf;
+		return TextUtils.isEmpty(xlf)?"0":xlf;
 	}
 
 	public void setXlf(String xlf) {
@@ -52,10 +55,18 @@ public class ProjectBean {
 	}
 
 	public String getZk() {
-		return zk;
+		return TextUtils.isEmpty(zk)?"0":zk;
 	}
 
 	public void setZk(String zk) {
 		this.zk = zk;
+	}
+
+	public String getCb() {
+		return cb;
+	}
+
+	public void setCb(String cb) {
+		this.cb = cb;
 	}
 }

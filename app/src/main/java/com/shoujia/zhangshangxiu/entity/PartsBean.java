@@ -1,5 +1,7 @@
 package com.shoujia.zhangshangxiu.entity;
 
+import android.text.TextUtils;
+
 public class PartsBean {
 	private int id;
 	private String pjbm;
@@ -14,6 +16,7 @@ public class PartsBean {
 	private String pjjj;
 	private String kcl;
 	private String xsj;
+	private String sl;
 	private boolean isSelected;
 
 	public int getId() {
@@ -97,7 +100,7 @@ public class PartsBean {
 	}
 
 	public String getPjjj() {
-		return pjjj== null?"":pjjj;
+		return TextUtils.isEmpty(pjjj)?"0":pjjj;
 	}
 
 	public void setPjjj(String pjjj) {
@@ -105,6 +108,9 @@ public class PartsBean {
 	}
 
 	public String getKcl() {
+		if(kcl!=null){
+			kcl = kcl.replace(".0000","");
+		}
 		return kcl== null?"":kcl;
 	}
 
@@ -113,7 +119,13 @@ public class PartsBean {
 	}
 
 	public String getXsj() {
-		return xsj== null?"":xsj;
+		if(xsj!=null){
+			xsj = xsj.replace(".0000","");
+			if(xsj.endsWith("00")&&xsj.contains(".")){
+				xsj = xsj.substring(0,xsj.lastIndexOf("00"));
+			}
+		}
+		return TextUtils.isEmpty(xsj)?"0":xsj;
 	}
 
 	public void setXsj(String xsj) {
@@ -126,5 +138,13 @@ public class PartsBean {
 
 	public void setSelected(boolean selected) {
 		isSelected = selected;
+	}
+
+	public String getSl() {
+		return TextUtils.isEmpty(sl)?"1":sl;
+	}
+
+	public void setSl(String sl) {
+		this.sl = sl;
 	}
 }
